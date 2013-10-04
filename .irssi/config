@@ -22,7 +22,15 @@ servers = (
   { address = "irc.webchat.org"; chatnet = "WebChat"; port = "6667"; },
   { address = "irc.rizon.net"; chatnet = "Rizon"; port = "6667"; },
   { address = "irc.link-net.org"; chatnet = "LinkNet"; port = "6667"; },
-  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; }
+  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
+  {
+    address = "holmes.freenode.net";
+    chatnet = "FreeNode";
+    port = "6666";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
 );
 
 chatnets = {
@@ -88,11 +96,13 @@ chatnets = {
     max_whois = "30";
   };
   SILC = { type = "SILC"; };
+  FreeNode = { type = "IRC"; autosendcmd = "/msg NickServ nick t0ha"; };
 };
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "silc"; chatnet = "silc"; autojoin = "No"; }
+  { name = "silc"; chatnet = "silc"; autojoin = "No"; },
+  { name = "#erlang"; chatnet = "FreeNode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -256,4 +266,7 @@ statusbar = {
     };
   };
 };
-settings = { "fe-text" = { actlist_sort = "refnum"; }; };
+settings = {
+  "fe-text" = { actlist_sort = "refnum"; term_force_colors = "yes"; };
+  core = { real_name = "t0ha"; user_name = "t0ha"; nick = "t0ha"; };
+};

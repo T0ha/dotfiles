@@ -142,6 +142,7 @@ bar {
 }
 
 bindsym $mod+Tab move workspace to output left
+bindsym $mod+q exec scrot -d 1 '%Y-%m-%d-%h-%M.png' -e 'mv $f ~/screenshot/'
 
 for_window [class="XMMS"] floating enable border none
 for_window [class="Audacious"] floating disable # border none
@@ -149,8 +150,14 @@ for_window [class="Audacious"] floating disable # border none
 # Wallpapper
 
 exec feh --bg-scale /home/t0ha/vim.jpg &
+#Kbd layout show
 exec xxkb &
-exec audacious &
+#Music player
+bindsym $mod+p exec mpc toggle
+bindsym $mod++ exec mpc volume +
+bindsym $mod+- exec mpc volume -
+
+#exec audacious &
 exec dropboxd &
 exec truecrypt &
 exec skype &
@@ -167,3 +174,5 @@ assign [class="Terminator"] 3
 
 exec konsole -e vim &
 exec chromium &
+
+
