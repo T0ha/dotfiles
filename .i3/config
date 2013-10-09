@@ -162,7 +162,7 @@ exec dropboxd &
 exec truecrypt &
 exec skype &
 exec kopete &
-exec wicd-client &
+exec wicd-client -t &
 exec terminator &
 
 workspace 2 output VGA-0
