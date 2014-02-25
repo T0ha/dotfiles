@@ -1,0 +1,5 @@
+set imap_user=t0hashvein@gmail.com
+set folder=imaps://t0hashvein@imap.gmail.com/
+set spoolfile=+/
+mailboxes =INBOX =MailLists
+unset record

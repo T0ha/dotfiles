@@ -38,6 +38,20 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "hobana.freenode.net";
+    chatnet = "FreeNode";
+    port = "6666";
+    use_ssl = "no";
+    ssl_verify = "no";
+  },
+  {
+    address = "gibson.freenode.net";
+    chatnet = "FreeNode";
+    port = "6666";
+    use_ssl = "no";
+    ssl_verify = "no";
   }
 );
 
@@ -104,14 +118,23 @@ chatnets = {
     max_whois = "30";
   };
   SILC = { type = "SILC"; };
-  FreeNode = { type = "IRC"; autosendcmd = "/msg NickServ nick t0ha"; };
-  BitlBee = { type = "IRC"; autosendcmd = "/msg identify noirechat"; };
+  FreeNode = {
+    type = "IRC";
+    autosendcmd = "/msg NickServ identify noirechat";
+  };
+  BitlBee = {
+    type = "IRC";
+    autosendcmd = "/msg &bitlbee identify noirechat";
+  };
 };
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
-  { name = "#erlang"; chatnet = "FreeNode"; autojoin = "yes"; }
+  { name = "#erlang"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#nitrogen"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#vim"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "FreeNode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -273,9 +296,28 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
   "fe-text" = { actlist_sort = "refnum"; term_force_colors = "yes"; };
   core = { real_name = "t0ha"; user_name = "t0ha"; nick = "t0ha"; };
+  "fe-common/core" = {
+    use_msgs_window = "yes";
+    use_status_window = "yes";
+    autolog = "yes";
+    theme = "greenbox";
+  };
+  "perl/core/scripts" = { awl_all_disable = "no"; };
 };
+logs = { };
+ignores = (
+  { mask = "*joins"; level = "ALL"; },
+  { level = "JOINS PARTS QUITS"; }
+);

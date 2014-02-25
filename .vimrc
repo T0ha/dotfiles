@@ -4,10 +4,11 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 filetype plugin indent on
 
-" filetype plugin on
+filetype plugin on
 
 Bundle 'gmarik/vundle'
 Bundle 'klen/python-mode'
+Bundle 'nblock/vim-dokuwiki'
 Bundle 'snipMate'
 Bundle 'Tagbar'
 Bundle 'surround.vim'
@@ -16,8 +17,10 @@ Bundle 'jimenezrick/vimerl'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'vim-scripts/dbext.vim.git'
 Bundle 'bling/vim-airline'
+Bundle 'Textile-for-VIM'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'csv.vim'
+Bundle 'zhaocai/DirDiff.vim'
 " Bundle 'scala.vim'
 
 syn on 
@@ -31,6 +34,12 @@ set scrolloff=4
 set backupdir=/tmp
 set directory=/tmp
 
+" Autoreload vimrc
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
 " RU-EN Ctrl-^
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -43,7 +52,8 @@ nnoremap * *N
 nnoremap 8 :nohlsearch<CR>
 nmap <C-s> :w<cr>
 imap <C-s> <Esc>:w<cr>
-
+" TagBar
+nmap <leader>t :TagbarToggle<cr>
 " noremap <C-S> :w !sodo tee %<cr>
 " Tabs
 nnoremap <leader>k :tabnew<cr>
@@ -56,6 +66,10 @@ if has('gui')
    set guioptions+=m  
    colorscheme torte
 endif
+
+" DirDiff settings
+let g:DirDiffExcludes = ".git, *.csv"
+let g:DirDiffIgnore = "AUTO_INCREMENT=[1-9]+"
 
 " Python-mode conf
 let g:pymode_lint_write = 1

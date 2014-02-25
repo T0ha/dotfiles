@@ -6,6 +6,32 @@
 #fi
 #export LANG=ru_RU.UTF-8
 
+export PATH="$HOME/bin:/usr/local/heroku/bin:$PATH"
+export BROWSER='chromium'
+
+# Xresources handler
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+# Plumb files instead of starting new editor.
+export EDITOR=E
+unset FCEDIT VISUAL
+
+# Get rid of backspace characters in Unix man output.
+export PAGER=nobs
+
+# Equivalent variables for rc(1).
+export home=$HOME
+export prompt="$H=;          "
+export user=$USER
+export path="$PLAN9/bin:$PATH"
+export shell=rc
+
+# MPD daemon start (if no other user instance exists)
+[ ! -s ~/.mpd/pid ] && mpd
+
+#Run additional things
+9 plumber
+
 setxkbmap -layout 'us,ru' -option 'grp:ctrl_shift_toggle'
 
 xrandr --output LVDS  --mode 1600x900 --primary
