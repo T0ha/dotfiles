@@ -26,9 +26,6 @@ export user=$USER
 export path="$PLAN9/bin:$PATH"
 export shell=rc
 
-# MPD daemon start (if no other user instance exists)
-[ ! -s ~/.mpd/pid ] && mpd
-
 #Run additional things
 9 plumber
 

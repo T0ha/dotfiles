@@ -163,7 +163,7 @@ exec dropboxd &
 exec truecrypt &
 exec skype &
 #exec kopete &
-exec urxvt -e irssi
+exec urxvt -e screen irssi
 exec wicd-client -t &
 exec terminator &
 

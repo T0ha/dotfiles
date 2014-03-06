@@ -33,6 +33,7 @@ set wildmode=list:longest
 set scrolloff=4
 set backupdir=/tmp
 set directory=/tmp
+set foldmethod=marker
 
 " Autoreload vimrc
 augroup myvimrc
@@ -83,7 +84,7 @@ let g:pymode_doc = 1
 
 " Key for show python documentation
 let g:pymode_doc_key = 'K'
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 
 " Airline
 set laststatus=2

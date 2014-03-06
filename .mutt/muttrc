@@ -1,5 +1,8 @@
-set imap_user=t0hashvein@gmail.com
-set folder=imaps://t0hashvein@imap.gmail.com/
-set spoolfile=+/
-mailboxes =INBOX =MailLists
-unset record
+set header_cache = "~/.cache/mutt"
+set imap_keepalive = 300
+unset imap_passive
+set mail_check = 60
+source "~/.mutt/gmail"
+folder-hook $folder 'source ~/.mutt/gmail'
+source "~/.mutt/gmail"
+folder-hook $folder 'source ~/.mutt/gmail'

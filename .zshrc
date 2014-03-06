@@ -52,6 +52,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
+source /usr/bin/virtualenvwrapper.sh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 

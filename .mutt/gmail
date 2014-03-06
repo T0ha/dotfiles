@@ -1,0 +1,10 @@
+set imap_user=t0hashvein@gmail.com
+set folder=imaps://t0hashvein@imap.gmail.com/
+set spoolfile= +INBOX
+set postponed = +Drafts
+set record = +Sent
+
+set smtp_url = smtps://t0hashvein@smtp.gmail.com
+set from = t0hashvein@gmail.com
+set realname = "Shvein Anton"
+mailboxes =INBOX =MailLists

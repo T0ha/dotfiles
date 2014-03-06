@@ -246,7 +246,6 @@ statusbar = {
         window = { };
         window_empty = { };
         lag = { priority = "-1"; };
-        act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
@@ -296,7 +295,9 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl = { type = "root"; items = { }; };
     awl_0 = {
+      placement = "top";
       items = {
         barstart = { priority = "100"; };
         awl_0 = { };
@@ -314,10 +315,99 @@ settings = {
     autolog = "yes";
     theme = "greenbox";
   };
-  "perl/core/scripts" = { awl_all_disable = "no"; };
+  "perl/core/scripts" = {
+    awl_all_disable = "yes";
+    awl_block = "-15";
+    awl_placement = "top";
+    awl_viewer = "no";
+    nicklist_width = "25";
+  };
 };
 logs = { };
 ignores = (
   { mask = "*joins"; level = "ALL"; },
   { level = "JOINS PARTS QUITS"; }
 );
+windows = {
+  1 = {
+    immortal = "yes";
+    name = "(status)";
+    level = "CRAP PUBLICS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+  };
+  2 = { 
+    immortal = "yes";
+    name = "(msgs)";
+    level = "MSGS ACTIONS DCCMSGS";
+  };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "&bitlbee";
+        tag = "BitlBee";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#twitter_t0ha666";
+        tag = "BitlBee";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "QUERY";
+        chat_type = "IRC";
+        name = "NickServ";
+        tag = "FreeNode";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#erlang";
+        tag = "FreeNode";
+      }
+    );
+  };
+  7 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#nitrogen";
+        tag = "FreeNode";
+      }
+    );
+  };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#vim";
+        tag = "FreeNode";
+      }
+    );
+  };
+  9 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#python-unregistered";
+        tag = "FreeNode";
+      }
+    );
+  };
+};
+mainwindows = { 3 = { first_line = "3"; lines = "60"; }; };
