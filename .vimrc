@@ -41,6 +41,11 @@ augroup myvimrc
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
+" Highlight 80 col overflow
+highlight ColorColumn ctermbg=magenta
+" set colorcolumn=81
+call matchadd('ColorColumn', '\%81v', 100)
+
 " RU-EN Ctrl-^
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -80,7 +85,8 @@ let g:pymode_lint_ignore = "E401, E221, E241,E501"
 let g:pymode_lint_cwindow = 0
 
 " Load show documentation plugin
-let g:pymode_doc = 1
+let g:pymode_doc = 0
+let g:pymode_rope_complete_on_dot = 0
 
 " Key for show python documentation
 let g:pymode_doc_key = 'K'

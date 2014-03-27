@@ -39,17 +39,17 @@ case $1 in
 	exec startkde
 	;;
     e17)
-	exec ssh-agent enlightenment_start
+	exec enlightenment_start
 	;;
     awesome)
 	
-	exec ssh-agent /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+	exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
 
 	;;
     i3)
-	exec ssh-agent i3
+	exec i3
 	;;
     *)
-	exec ssh-agent i3
+	exec i3
 	;;
 esac

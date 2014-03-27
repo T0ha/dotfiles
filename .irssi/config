@@ -304,6 +304,22 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_2 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_2 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -334,12 +350,7 @@ windows = {
     name = "(status)";
     level = "CRAP PUBLICS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
   };
-  2 = { 
-    immortal = "yes";
-    name = "(msgs)";
-    level = "MSGS ACTIONS DCCMSGS";
-  };
-  3 = {
+  2 = {
     items = (
       {
         type = "CHANNEL";
@@ -349,17 +360,7 @@ windows = {
       }
     );
   };
-  4 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#twitter_t0ha666";
-        tag = "BitlBee";
-      }
-    );
-  };
-  5 = {
+  3 = {
     items = (
       {
         type = "QUERY";
@@ -369,7 +370,7 @@ windows = {
       }
     );
   };
-  6 = {
+  4 = {
     items = (
       {
         type = "CHANNEL";
@@ -379,7 +380,7 @@ windows = {
       }
     );
   };
-  7 = {
+  5 = {
     items = (
       {
         type = "CHANNEL";
@@ -389,7 +390,7 @@ windows = {
       }
     );
   };
-  8 = {
+  6 = {
     items = (
       {
         type = "CHANNEL";
@@ -399,7 +400,7 @@ windows = {
       }
     );
   };
-  9 = {
+  7 = {
     items = (
       {
         type = "CHANNEL";
@@ -409,5 +410,15 @@ windows = {
       }
     );
   };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#twitter_t0ha666";
+        tag = "BitlBee";
+      }
+    );
+  };
 };
-mainwindows = { 3 = { first_line = "3"; lines = "60"; }; };
+mainwindows = { 1 = { first_line = "2"; lines = "61"; }; };
