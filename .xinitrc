@@ -1,16 +1,13 @@
-#if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-#	for f in /etc/X11/xinit/xinitrc.d/* ; do
-#		[ -x "$f" ] && . "$f"
-#	done
-#	unset f
-#fi
-#export LANG=ru_RU.UTF-8
-
 export PATH="$HOME/bin:/usr/local/heroku/bin:$PATH"
 export BROWSER='chromium'
 
 # Xresources handler
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+# Xmodmap source
+if [ -s ~/.Xmodmap]; then
+    xmodmap ~/.Xmodmap
+fi
 
 # Plumb files instead of starting new editor.
 export EDITOR=E
