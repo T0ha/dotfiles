@@ -5,9 +5,9 @@ export BROWSER='chromium'
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Xmodmap source
-if [ -s ~/.Xmodmap]; then
-    xmodmap ~/.Xmodmap
-fi
+#if [ -f ~/.Xmodmap]; then
+xmodmap ~/.Xmodmap
+#fi
 
 # Plumb files instead of starting new editor.
 export EDITOR=E

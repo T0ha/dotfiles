@@ -58,6 +58,7 @@ nnoremap * *N
 nnoremap 8 :nohlsearch<CR>
 nmap <C-s> :w<cr>
 imap <C-s> <Esc>:w<cr>
+nnoremap <C-g> <Esc>:Gst<cr>
 " TagBar
 nmap <leader>t :TagbarToggle<cr>
 " noremap <C-S> :w !sodo tee %<cr>
