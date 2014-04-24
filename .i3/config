@@ -144,9 +144,6 @@ bar {
 bindsym $mod+Tab move workspace to output left
 bindsym $mod+q exec scrot -d 1 '%Y-%m-%d-%H-%M.png' -e 'mv $f ~/screenshot/'
 
-for_window [class="XMMS"] floating enable border none
-for_window [class="Audacious"] floating disable # border none
-
 # Wallpapper
 
 exec feh --bg-scale /home/t0ha/dub.jpg &
@@ -172,9 +169,6 @@ workspace 2 output VGA-0
 
 assign [title="Chromium$"] 2
 assign [title="irssi"] 4
-assign [class="GVIM"] 1
-assign [class="Audacious"] 4
-assign [class="Terminator"] 3
 assign [class="urxvt"] 3
 
 exec konsole -e vim &

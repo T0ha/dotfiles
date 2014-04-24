@@ -1,0 +1,10 @@
+history-limit 1000
+# html-renderer "chromium -t %u"
+notify-program "/usr/bin/notify-send"
+reload-time 2
+reload-threads 3
+refresh-on-startup yes
+browser "chromium -t %u"
+auto-reload yes
+bind-key j next
+bind-key k prev
