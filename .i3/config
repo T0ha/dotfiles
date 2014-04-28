@@ -155,21 +155,22 @@ bindsym $mod+p exec mpc toggle
 #bindsym $mod+z exec "mpc volume -"
 
 exec clipit &
-exec dropboxd &
+#exec dropboxd &
 exec truecrypt &
 exec skype &
 exec skyped &
-#exec bitcoin-qt & 
+#exec  & 
 exec "urxvt -name 'irssi' -e screen irssi &"
+exec "urxvt -name 'mutt' -e mutt &"
+exec "urxvt -name 'news' -e newsbeuter &"
 exec wicd-client -t &
-#exec terminator &
 exec urxvt &
 
 workspace 2 output VGA-0
 
 assign [title="Chromium$"] 2
 assign [title="irssi"] 4
-assign [class="urxvt"] 3
+assign [title="urxvt"] 3
 
 exec konsole -e vim &
 exec chromium &
