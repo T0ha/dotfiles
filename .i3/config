@@ -155,11 +155,9 @@ bindsym $mod+p exec mpc toggle
 #bindsym $mod+z exec "mpc volume -"
 
 exec clipit &
-#exec dropboxd &
 exec truecrypt &
 exec skype &
 exec skyped &
-#exec  & 
 exec "urxvt -name 'irssi' -e screen irssi &"
 exec "urxvt -name 'mutt' -e mutt &"
 exec "urxvt -name 'news' -e newsbeuter &"
@@ -174,5 +172,4 @@ assign [title="urxvt"] 3
 
 exec konsole -e vim &
 exec chromium &
-
 
