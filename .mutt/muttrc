@@ -1,7 +1,10 @@
 set header_cache = "~/.cache/mutt"
 set imap_keepalive = 300
 unset imap_passive
+source "gpg2 -dq $HOME/.passwds.gpg|"
+set imap_pass=$my_password
 set mail_check = 60
+set signature = ~/.mutt/signature
 source "~/.mutt/gmail"
 folder-hook $folder 'source ~/.mutt/gmail'
 ## source "~/.mutt/tcobdd"

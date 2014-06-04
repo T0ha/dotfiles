@@ -320,6 +320,22 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_3 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_3 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_4 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_4 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -336,7 +352,7 @@ settings = {
     awl_block = "-15";
     awl_placement = "top";
     awl_viewer = "no";
-    nicklist_width = "25";
+    nicklist_width = "30";
   };
 };
 logs = { };
