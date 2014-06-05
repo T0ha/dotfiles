@@ -147,12 +147,14 @@ bindsym $mod+q exec scrot -d 1 '%Y-%m-%d-%H-%M.png' -e 'mv $f ~/screenshot/'
 # Wallpapper
 
 exec feh --bg-scale /home/t0ha/dub.jpg &
-#Kbd layout show
+
+#kBD layout show
 exec xxkb &
+
 #Music player
 bindsym $mod+p exec mpc toggle
-#bindsym $mod+a exec "mpc volume +"
-#bindsym $mod+z exec "mpc volume -"
+
+# Autorun
 
 exec clipit &
 exec truecrypt &
@@ -162,14 +164,24 @@ exec "urxvt -name 'irssi' -e screen irssi &"
 exec "urxvt -name 'mutt' -e mutt &"
 exec "urxvt -name 'news' -e newsbeuter &"
 exec wicd-client -t &
+exec konsole -e vim &
 exec urxvt &
 
+# Workspace naming
+
+workspace 1 coding
 workspace 2 output VGA-0
+workspace 3 mail
+workspace 4 messenger
+
+# Windows to tag assignment
 
 assign [title="Chromium$"] 2
-assign [title="irssi"] 4
-assign [title="urxvt"] 3
+assign [title="screen"] 4
+assign [title="urxvt"] 1
+assign [title="mutt"] 3
+assign [title="newsbeuter"] 3
+assign [title="Konsole$"] 1
 
-exec konsole -e vim &
 exec chromium &
 
