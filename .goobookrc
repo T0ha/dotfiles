@@ -4,7 +4,7 @@
 # machine google.com
 email: t0hashvein@gmail.com
 # or if you want to get the password from a commmand:
-passwordeval: gpg --batch -d ~/.mutt/pw.gpg
+passwordeval: gpg --batch -d ~/.passwds.gpg
 # The following are optional, defaults are shown
 ;cache_filename: ~/.goobook_cache
 ;cache_expiry_hours: 24
