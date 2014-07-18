@@ -204,6 +204,12 @@ audio_output {
 	type		"alsa"
 	name		"SD1955"
 	device		"hw: SD1955"	# optional
+    auto_resample "no"
+    auto_channels "no"
+    auto_format "no"
+    dsd_usb "no"
+    mixer_type "hardware"
+    replay_gain_handler "none"
 ##	format		"44100:16:2"	# optional
 ##	mixer_type      "hardware"	# optional
 ##	mixer_device	"default"	# optional
@@ -212,8 +218,14 @@ audio_output {
 }
 audio_output {
 	type		"alsa"
-	name		"Default"
-	device		"default"	# optional
+	name		"Intel"
+	device		"hw: PCH"	# optional
+    auto_resample "no"
+    auto_channels "no"
+    auto_format "no"
+    dsd_usb "no"
+    mixer_type "hardware"
+    replay_gain_handler "none"
 ##	format		"44100:16:2"	# optional
 ##	mixer_type      "hardware"	# optional
 ##	mixer_device	"default"	# optional

@@ -142,7 +142,7 @@ bar {
 }
 
 bindsym $mod+Tab move workspace to output left
-bindsym $mod+q exec scrot -d 1 '%Y-%m-%d-%H-%M.png' -e 'mv $f ~/screenshot/'
+bindsym $mod+q exec scrot -s -d 1 '%Y-%m-%d-%H-%M.png' -e 'mv $f ~/screenshot/'
 
 # Wallpapper
 
@@ -157,9 +157,9 @@ bindsym $mod+p exec mpc toggle
 # Autorun
 
 exec clipit &
-exec truecrypt &
 exec skype &
 exec skyped &
+exec dropboxd &
 exec "urxvt -name 'irssi' -e screen irssi &"
 exec "urxvt -name 'mutt' -e mutt &"
 exec "urxvt -name 'news' -e newsbeuter &"
@@ -169,10 +169,7 @@ exec urxvt &
 
 # Workspace naming
 
-# rename workspace 1 to "1: coding"
-workspace 1 output VGA-1
-#workspace 3 "mail"
-#workspace 4 "messenger"
+workspace 2 output VGA-0
 
 # Windows to tag assignment
 
@@ -185,3 +182,6 @@ assign [title="Konsole$"] 1
 
 exec chromium &
 
+#Marks
+bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark: '
+bindsym $mod+` exec i3-input -F '[con_mark="%s"] focus' -P 'Goto mark: '
