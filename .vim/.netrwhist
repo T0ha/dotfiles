@@ -1,3 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/t0ha'
+let g:netrw_dirhist_2='scp://root@192.168.24.200//srv/'
+let g:netrw_dirhist_3='scp://root@192.168.2.154//srv/'
+let g:netrw_dirhist_4='/home/t0ha/projects/freelance/odesk/SP/repo/bitmessage.erl/src'
+let g:netrw_dirhist_5='/home/t0ha/projects/freelance/odesk/SP/repo/nitrogen_core/src'
+let g:netrw_dirhist_6='/home/t0ha/projects/freelance/odesk/SP/repo/nitrogen_core'
+let g:netrw_dirhist_7='/home/t0ha/projects/freelance/odesk/SP/repo/nitrogen_core/www'
+let g:netrw_dirhist_8='.'

@@ -6,12 +6,11 @@ export BROWSER='chromium'
 
 # Xmodmap source
 #if [ -f ~/.Xmodmap]; then
-xmodmap ~/.Xmodmap
 #fi
 
 # Plumb files instead of starting new editor.
-export EDITOR=E
-unset FCEDIT VISUAL
+export EDITOR=vim
+# unset FCEDIT VISUAL
 
 # Get rid of backspace characters in Unix man output.
 export PAGER=nobs
@@ -27,6 +26,7 @@ export shell=rc
 9 plumber
 
 setxkbmap -layout 'us,ru' -option 'grp:ctrl_shift_toggle'
+xmodmap ~/.Xmodmap
 
 xrandr --output LVDS  --mode 1600x900 --primary
 xrandr --output VGA-0 --mode 1920x1080 --left-of LVDS

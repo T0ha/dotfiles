@@ -22,7 +22,7 @@
 "
 " USAGE:
 "   Put this file in your ~/.vim/plugin
-" 
+"
 "   Doing the following will generate a diff window.
 "
 "       :DirDiff <A:Src Directory> <B:Src Directory>
@@ -61,11 +61,12 @@
 "   'a' - Sets additional arguments for diff, eg. -w to ignore white space,
 "         etc.
 "   'q' - Quit DirDiff
-"    
+"
 "   The following comamnds can be used in the Vim diff mode
 "   \dg - Diff get: maps to :diffget<CR>
+"   \do - Synonym with \do, provided for consistency with Vim's built-in diff
 "   \dp - Diff put: maps to :diffput<CR>
-"   \dj - Diff next: (think j for down) 
+"   \dj - Diff next: (think j for down)
 "   \dk - Diff previous: (think k for up)
 "
 "   You can set the following DirDiff variables.  You can add the following
@@ -112,7 +113,7 @@
 "
 " CREDITS:
 "
-"   Please mail any comment/suggestion/patch to 
+"   Please mail any comment/suggestion/patch to
 "   William Lee <wl1012@yahoo.com>
 "
 " LICENSE:
@@ -172,10 +173,10 @@
 "         exclude and ignore pattern.
 "  0.91 - Clean up delete routine.
 "       - Added interactive mode.
-"       - Added multiple entries of exclude and ignore pattern.  
+"       - Added multiple entries of exclude and ignore pattern.
 "       - Custom configuration through global variables.
 "       - Change exclude and ignore patterns on the fly.
-"        
+"
 "  0.9  - Reorganization of the interface.  Much simplier dialog for
 "         synchronization.  Support for range synchronization option (REALLY
 "         powerful)
@@ -195,6 +196,12 @@
 "
 " }}}
 
+if exists('g:loaded_DirDiff')
+  finish
+endif
+
+let g:loaded_DirDiff = 1
+
 " Public Interface:
 command! -nargs=* -complete=dir DirDiff call <SID>DirDiff (<f-args>)
 command! -nargs=0 DirDiffOpen call <SID>DirDiffOpen ()
@@ -202,26 +209,38 @@ command! -nargs=0 DirDiffNext call <SID>DirDiffNext ()
 command! -nargs=0 DirDiffPrev call <SID>DirDiffPrev ()
 command! -nargs=0 DirDiffUpdate call <SID>DirDiffUpdate ()
 command! -nargs=0 DirDiffQuit call <SID>DirDiffQuit ()
+command! -nargs=0 DirDiffGUI call <SID>DirDiffGUI ()
 
-if !hasmapto('<Plug>DirDiffGet')
-  map <unique> <Leader>dg <Plug>DirDiffGet
-endif
-if !hasmapto('<Plug>DirDiffPut')
-  map <unique> <Leader>dp <Plug>DirDiffPut
-endif
-if !hasmapto('<Plug>DirDiffNext')
-  map <unique> <Leader>dj <Plug>DirDiffNext
-endif
-if !hasmapto('<Plug>DirDiffPrev')
-  map <unique> <Leader>dk <Plug>DirDiffPrev
-endif
+" Diff Buffer Specific Maps:
+let g:DirDiffNextKey = get(g:, 'DirDiffNextKey', "<Leader>dj")
+let g:DirDiffPrevKey = get(g:, 'DirDiffPrevKey', "<Leader>dk")
+let g:DirDiffQuitKey = get(g:, 'DirDiffQuitKey', "<Leader>dq")
 
-" Global Maps:
 map <unique> <script> <Plug>DirDiffGet    :diffget<CR>
 map <unique> <script> <Plug>DirDiffPut    :diffput<CR>
-map <unique> <script> <Plug>DirDiffNext    :call <SID>DirDiffNext()<CR>
-map <unique> <script> <Plug>DirDiffPrev    :call <SID>DirDiffPrev()<CR>
-map <unique> <script> <Plug>DirDiffQuit    :call <SID>DirDiffQuit()<CR>
+nmap <unique> <script> <Plug>DirDiffNext    :call <SID>DirDiffNext()<CR>
+nmap <unique> <script> <Plug>DirDiffPrev    :call <SID>DirDiffPrev()<CR>
+nmap <unique> <script> <Plug>DirDiffQuit    :call <SID>DirDiffQuit()<CR>
+map <unique> <script> <Plug>DirDiffGUI    :call <SID>DirDiffGUI()<CR>
+
+" menu items
+amenu &Diff.GUI\                   :call <SID>DirDiffGUI ()<CR>
+amenu &Diff.Next\ Change\          ]c
+amenu &Diff.Prev\ Change\          [c
+amenu &Diff.Put\ Change\           :diffput<CR>
+amenu &Diff.Get\ Change\           :diffget<CR>
+amenu &Diff.-SEP1-                 :
+amenu &Diff.Next\ File\            :call <SID>DirDiffNext ()<CR>
+amenu &Diff.Prev\ File\            :call <SID>DirDiffPrev ()<CR>
+amenu &Diff.Sync\ Files\           :call <SID>DirDiffSync ()<CR>
+amenu &Diff.Update\ Diff\          :call <SID>DirDiffUpdate ()<CR>
+amenu &Diff.Quit\                  :call <SID>DirDiffQuit ()<CR>
+
+amenu ToolBar.-DDSep1-             :
+amenu ToolBar.GUI                  :call <SID>DirDiffGUI ()<CR>
+tmenu ToolBar.GUI Start DirDiff with GUI
+
+
 
 " Default Variables.  You can override these in your global variables
 " settings.
@@ -232,7 +251,7 @@ map <unique> <script> <Plug>DirDiffQuit    :call <SID>DirDiffQuit()<CR>
 " eg. in your .vimrc file: let g:DirDiffExcludes = "CVS,*.class,*.o"
 "                          let g:DirDiffIgnore = "Id:"
 "                          " ignore white space in diff
-"                          let g:DirDiffAddArgs = "-w" 
+"                          let g:DirDiffAddArgs = "-w"
 "
 " You can set the pattern that diff excludes.  Defaults to the CVS directory
 if !exists("g:DirDiffExcludes")
@@ -295,6 +314,7 @@ endif
 let s:DirDiffFirstDiffLine = 6
 let s:DirDiffALine = 1
 let s:DirDiffBLine = 2
+let s:DirDiffIsRunning = 0
 
 " -- Variables used in various utilities
 if has("unix")
@@ -328,7 +348,7 @@ elseif has("win32")
     " Windows is somewhat stupid since "del" can only remove the files, not
     " the directory.  The command "rd" would remove files recursively, but it
     " doesn't really work on a file (!).  where is the deltree command???
-     
+
     let s:DirDiffDeleteDirCmd = "rd"
     " rd is by default prompting, we need to handle this in a different way
     let s:DirDiffDeleteDirFlags = "/s"
@@ -348,6 +368,32 @@ endif
 
 
 function! <SID>DirDiff(srcA, srcB)
+    if(s:DirDiffIsRunning == 0)
+        let s:DirDiffIsRunning = 1
+        aunmenu ToolBar.GUI
+        amenu ToolBar.PrevChange           [c
+        tmenu ToolBar.PrevChange Previous Change
+        amenu ToolBar.NextChange           ]c
+        tmenu ToolBar.NextChange Next Change
+        amenu ToolBar.PutChange            :diffput<CR>
+        tmenu ToolBar.PutChange Put Change
+        amenu ToolBar.GetChange            :diffget<CR>
+        tmenu ToolBar.GetChange Get Change
+        amenu ToolBar.-DDSep2-             :
+        amenu ToolBar.PrevFile             :call <SID>DirDiffPrev ()<CR>
+        tmenu ToolBar.PrevFile Previous File
+        amenu ToolBar.NextFile             :call <SID>DirDiffNext ()<CR>
+        tmenu ToolBar.NextFile Next File
+        amenu ToolBar.SyncFiles            :call <SID>DirDiffSync ()<CR>
+        tmenu ToolBar.SyncFiles Sync Files
+        amenu ToolBar.UpdateDiff           :call <SID>DirDiffUpdate ()<CR>
+        tmenu ToolBar.UpdateDiff Update Diff
+        amenu ToolBar.QuitDiff             :call <SID>DirDiffQuit ()<CR>
+        tmenu ToolBar.QuitDiff Quit Diff
+    else
+        echo "DirDiff is running"
+        return
+    endif
     " Setup
     let DirDiffAbsSrcA = fnamemodify(expand(a:srcA, ":p"), ":p")
     let DirDiffAbsSrcB = fnamemodify(expand(a:srcB, ":p"), ":p")
@@ -388,6 +434,7 @@ function! <SID>DirDiff(srcA, srcB)
     let error = <SID>DirDiffExec(cmd, 0)
     if (error == 0)
         redraw | echom "diff found no differences - directories match."
+        let s:DirDiffIsRunning = 0
         return
     endif
     silent exe "edit ".DiffBuffer
@@ -396,11 +443,11 @@ function! <SID>DirDiff(srcA, srcB)
     " We need to do substitution of the the LONGER string first, otherwise
     " it'll mix up the A and B directory
     if (strlen(DirDiffAbsSrcA) > strlen(DirDiffAbsSrcB))
-	    silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcA)."/[A]/"
-	    silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcB)."/[B]/"
+        silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcA)."/[A]/"
+        silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcB)."/[B]/"
     else
-	    silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcB)."/[B]/"
-	    silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcA)."/[A]/"
+        silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcB)."/[B]/"
+        silent! exe "%s/".<SID>EscapeDirForRegex(DirDiffAbsSrcA)."/[A]/"
     endif
     " In windows, diff behaves somewhat weirdly, for the appened path it'll
     " use "/" instead of "\".  Convert this to \
@@ -433,6 +480,21 @@ function! <SID>DirDiff(srcA, srcB)
     setlocal nowrap
 
     " Set up local key bindings
+
+    if !hasmapto('<Plug>DirDiffGet')
+      map <unique> <buffer> <Leader>dg <Plug>DirDiffGet
+      map <unique> <buffer> <Leader>do <Plug>DirDiffGet
+    endif
+    if !hasmapto('<Plug>DirDiffPut')
+      map <unique> <buffer> <Leader>dp <Plug>DirDiffPut
+    endif
+    if !hasmapto('<Plug>DirDiffNext')
+      map <unique> <buffer> <Leader>dj <Plug>DirDiffNext
+    endif
+    if !hasmapto('<Plug>DirDiffPrev')
+      map <unique> <buffer> <Leader>dk <Plug>DirDiffPrev
+    endif
+
     " 'n' actually messes with the search next pattern, I think using \dj and
     " \dk is enough.  Otherwise, use j,k, and enter.
 "    nnoremap <buffer> n :call <SID>DirDiffNext()<CR>
@@ -443,10 +505,15 @@ function! <SID>DirDiff(srcA, srcB)
     nnoremap <buffer> x :call <SID>ChangeExcludes()<CR>
     nnoremap <buffer> a :call <SID>ChangeArguments()<CR>
     nnoremap <buffer> i :call <SID>ChangeIgnore()<CR>
+
     nnoremap <buffer> q :call <SID>DirDiffQuit()<CR>
+    nnoremap <buffer> Q :call <SID>DirDiffQuit()<CR>
+
+    nnoremap <buffer> J :call <SID>DirDiffNext()<CR>
+    nnoremap <buffer> K :call <SID>DirDiffPrev()<CR>
 
     nnoremap <buffer> o    :call <SID>DirDiffOpen()<CR>
-    nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>  
+    nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>
     nnoremap <buffer> <2-Leftmouse> :call <SID>DirDiffOpen()<CR>
     call <SID>SetupSyntax()
 
@@ -454,26 +521,33 @@ function! <SID>DirDiff(srcA, srcB)
     call <SID>DirDiffNext()
 endfunction
 
+
+function! <SID>SetupMapping()
+    exec 'nmap <buffer> ' . g:DirDiffNextKey . ' <Plug>DirDiffNext'
+    exec 'nmap <buffer> ' . g:DirDiffPrevKey . ' <Plug>DirDiffPrev'
+    exec 'nmap <buffer> ' . g:DirDiffQuitKey . ' <Plug>DirDiffQuit'
+endfunction
+
 " Set up syntax highlighing for the diff window
 function! <SID>SetupSyntax()
-  if has("syntax") && exists("g:syntax_on") 
-      "&& !has("syntax_items")
-    syn match DirDiffSrcA               "\[A\]"
-    syn match DirDiffSrcB               "\[B\]"
-    syn match DirDiffUsage              "^Usage.*"
-    syn match DirDiffOptions            "^Options.*"
-    exec 'syn match DirDiffFiles              "' . s:DirDiffDifferLine .'"'
-    exec 'syn match DirDiffOnly               "' . s:DirDiffDiffOnlyLine . '"'
-    syn match DirDiffSelected           "^==>.*" contains=DirDiffSrcA,DirDiffSrcB
+    if has("syntax") && exists("g:syntax_on")
+        "&& !has("syntax_items")
+        syn match DirDiffSrcA               "\[A\]"
+        syn match DirDiffSrcB               "\[B\]"
+        syn match DirDiffUsage              "^Usage.*"
+        syn match DirDiffOptions            "^Options.*"
+        exec 'syn match DirDiffFiles              "' . s:DirDiffDifferLine .'"'
+        exec 'syn match DirDiffOnly               "' . s:DirDiffDiffOnlyLine . '"'
+        syn match DirDiffSelected           "^==>.*" contains=DirDiffSrcA,DirDiffSrcB
 
-    hi def link DirDiffSrcA               Directory
-    hi def link DirDiffSrcB               Type
-    hi def link DirDiffUsage              Special
-    hi def link DirDiffOptions            Special
-    hi def link DirDiffFiles              String
-    hi def link DirDiffOnly               PreProc
-    hi def link DirDiffSelected           DiffChange
-  endif
+        hi def link DirDiffSrcA               diffOldFile
+        hi def link DirDiffSrcB               diffNewFile
+        hi def link DirDiffUsage              Special
+        hi def link DirDiffOptions            Constant
+        hi def link DirDiffFiles              diffFile
+        hi def link DirDiffOnly               diffOnly
+        hi def link DirDiffSelected           diffChanged
+    endif
 endfunction
 
 " You should call this within the diff window
@@ -485,10 +559,48 @@ endfun
 
 " Quit the DirDiff mode
 function! <SID>DirDiffQuit()
+    wincmd b
     let in = confirm ("Are you sure you want to quit DirDiff?", "&Yes\n&No", 2)
     if (in == 1)
         call <SID>CloseDiffWindows()
+        aunmenu ToolBar.PrevChange
+        aunmenu ToolBar.NextChange
+        aunmenu ToolBar.PutChange
+        aunmenu ToolBar.GetChange
+        aunmenu ToolBar.-DDSep2-
+        aunmenu ToolBar.PrevFile
+        aunmenu ToolBar.NextFile
+        aunmenu ToolBar.SyncFiles
+        aunmenu ToolBar.UpdateDiff
+        aunmenu ToolBar.QuitDiff
+        amenu ToolBar.GUI           :call <SID>DirDiffGUI ()<CR>
+        tmenu ToolBar.GUI Start DirDiff with GUI
         bd!
+    endif
+    let s:DirDiffIsRunning = 0
+endfun
+
+" Open GUI for DirDiff
+function! <SID>DirDiffGUI()
+    if(s:DirDiffIsRunning == 1)
+        echo "DirDiff is running"
+        return
+    endif
+    let workingDir = $HOME.'/workspace/'
+    let lft = browsedir("Select the left side to compare", workingDir)
+
+    if lft == ""
+        echo "To do a DirDiff, you must choose a directory to start with"
+        return
+    endif
+
+    let rgt = browsedir("Select the right side to compare", workingDir)
+
+    if lft != "" && rgt != ""
+        echo "Comparing " . lft . " & " rgt
+        call <SID>DirDiff(lft, rgt)
+    else
+        echo "User cancelled DirDiff or an invalid directory names were provided"
     endif
 endfun
 
@@ -515,15 +627,24 @@ function! <SID>CloseDiffWindows()
 endfunction
 
 function! <SID>EscapeFileName(path)
-	if (v:version >= 702)
-		return fnameescape(a:path)
-	else
-		" This is not a complete list of escaped character, so it's
-		" not as sophisicated as the fnameescape, but this should
-		" cover most of the cases and should work for Vim version <
-		" 7.2
-		return escape(a:path, " \t\n*?[{`$\\%#'\"|!<")
-	endif
+    if (v:version >= 702)
+        return fnameescape(a:path)
+    else
+        " This is not a complete list of escaped character, so it's
+        " not as sophisicated as the fnameescape, but this should
+        " cover most of the cases and should work for Vim version <
+        " 7.2
+        return escape(a:path, " \t\n*?[{`$\\%#'\"|!<")
+    endif
+endfunction
+
+function! <SID>DirDiffResize()
+    if winheight(0) != g:DirDiffWindowSize
+        exe("resize " . g:DirDiffWindowSize)
+    endif
+    if !&winfixheight
+        setlocal winfixheight
+    endif
 endfunction
 
 function! <SID>DirDiffOpen()
@@ -563,11 +684,12 @@ function! <SID>DirDiffOpen()
         split
         wincmd k
         silent exec "edit ". <SID>EscapeFileName(fileToOpen)
+        call <SID>SetupMapping()
         " Fool the window saying that this is diff
         diffthis
         wincmd j
         " Resize the window
-        exe("resize " . g:DirDiffWindowSize)
+        call <SID>DirDiffResize()
         exe (b:currentDiff)
     elseif <SID>IsDiffer(line)
         "Open the diff windows
@@ -581,17 +703,22 @@ function! <SID>DirDiffOpen()
         " silent exec "vert diffsplit ".<SID>EscapeFileName(fileA)
         " let &splitright = saved_splitright
         silent exec "leftabove vert diffsplit ".<SID>EscapeFileName(fileA)
+        call <SID>SetupMapping()
+        wincmd p
+        call <SID>SetupMapping()
 
         " Go back to the diff window
         wincmd j
         " Resize the window
-        exe("resize " . g:DirDiffWindowSize)
+        call <SID>DirDiffResize()
         exe (b:currentDiff)
         " Center the line
         exe ("normal z.")
     else
         echo "There is no diff at the current line!"
     endif
+
+    exec thisWindow.'wincmd w'
 endfunction
 
 " Ask the user to save if the buffer is modified
@@ -648,28 +775,45 @@ function! <SID>GetBaseDir(diffName)
     return rtn
 endfunction
 
+
 function! <SID>DirDiffNext()
-    " If the current window is a diff, go down one
-    if (&diff == 1)
-        wincmd j
-    endif
-    " if the current line is <= 6, (within the header range), we go to the
-    " first diff line open it
-    if (line(".") < s:DirDiffFirstDiffLine)
-        exe (s:DirDiffFirstDiffLine)
-        let b:currentDiff = line(".")
-    endif
-    silent! exe (b:currentDiff + 1)
-    call <SID>DirDiffOpen()
+    let saved_lazyredraw = &lazyredraw
+    try
+        set lazyredraw
+        " If the current window is a diff, go down one
+        if (&diff == 1)
+            wincmd j
+        endif
+        " if the current line is <= 6, (within the header range), we go to the
+        " first diff line open it
+        if (line(".") < s:DirDiffFirstDiffLine)
+            exe (s:DirDiffFirstDiffLine)
+            let b:currentDiff = line(".")
+        endif
+        silent! exe (b:currentDiff + 1)
+        call <SID>DirDiffOpen()
+    finally
+        let &lazyredraw = saved_lazyredraw
+    endtry
+
 endfunction
 
 function! <SID>DirDiffPrev()
-    " If the current window is a diff, go down one
-    if (&diff == 1)
-        wincmd j
-    endif
-    silent! exe (b:currentDiff - 1)
-    call <SID>DirDiffOpen()
+    let saved_lazyredraw = &lazyredraw
+    try
+        set lazyredraw
+
+        " If the current window is a diff, go down one
+        if (&diff == 1)
+            wincmd j
+        endif
+        silent! exe (b:currentDiff - 1)
+        call <SID>DirDiffOpen()
+    finally
+        redraw
+        let &lazyredraw = saved_lazyredraw
+    endtry
+
 endfunction
 
 " For each line, we can perform a recursive copy or delete to sync up the
@@ -716,9 +860,10 @@ function! <SID>DirDiffSyncHelper(AB, line)
             let fileFrom = fileB
             let fileTo = fileA
         endif
-    else 
+    else
         echo "There is no diff here!"
         " Error
+        let s:DirDiffIsRunning = 0
         return 1
     endif
     if (operation == "Copy")
@@ -946,7 +1091,7 @@ function! <SID>AreDiffWinsOpened()
 endfunction
 
 " The given line begins with the "Only in"
-function! <SID>IsOnly(line)	
+function! <SID>IsOnly(line)
     return (match(a:line, "^ *" . s:DirDiffDiffOnlyLine . "\\|^==> " . s:DirDiffDiffOnlyLine ) == 0)
 endfunction
 
@@ -977,59 +1122,59 @@ endfunction
 "
 " Function for use with Sort(), to compare two strings.
 func! <SID>Strcmp(str1, str2)
-  if (a:str1 < a:str2)
-	return -1
-  elseif (a:str1 > a:str2)
-	return 1
-  else
-	return 0
-  endif
+    if (a:str1 < a:str2)
+        return -1
+    elseif (a:str1 > a:str2)
+        return 1
+    else
+        return 0
+    endif
 endfunction
 
 " Sort lines.  SortR() is called recursively.
 func! <SID>SortR(start, end, cmp)
-  if (a:start >= a:end)
-	return
-  endif
-  let partition = a:start - 1
-  let middle = partition
-  let partStr = getline((a:start + a:end) / 2)
-  let i = a:start
-  while (i <= a:end)
-	let str = getline(i)
-	exec "let result = " . a:cmp . "(str, partStr)"
-	if (result <= 0)
-	    " Need to put it before the partition.  Swap lines i and partition.
-	    let partition = partition + 1
-	    if (result == 0)
-		let middle = partition
-	    endif
-	    if (i != partition)
-		let str2 = getline(partition)
-		call setline(i, str2)
-		call setline(partition, str)
-	    endif
-	endif
-	let i = i + 1
-  endwhile
+    if (a:start >= a:end)
+        return
+    endif
+    let partition = a:start - 1
+    let middle = partition
+    let partStr = getline((a:start + a:end) / 2)
+    let i = a:start
+    while (i <= a:end)
+        let str = getline(i)
+        exec "let result = " . a:cmp . "(str, partStr)"
+        if (result <= 0)
+            " Need to put it before the partition.  Swap lines i and partition.
+            let partition = partition + 1
+            if (result == 0)
+                let middle = partition
+            endif
+            if (i != partition)
+                let str2 = getline(partition)
+                call setline(i, str2)
+                call setline(partition, str)
+            endif
+        endif
+        let i = i + 1
+    endwhile
 
-  " Now we have a pointer to the "middle" element, as far as partitioning
-  " goes, which could be anywhere before the partition.  Make sure it is at
-  " the end of the partition.
-  if (middle != partition)
-	let str = getline(middle)
-	let str2 = getline(partition)
-	call setline(middle, str2)
-	call setline(partition, str)
-  endif
-  call <SID>SortR(a:start, partition - 1, a:cmp)
-  call <SID>SortR(partition + 1, a:end, a:cmp)
+    " Now we have a pointer to the "middle" element, as far as partitioning
+    " goes, which could be anywhere before the partition.  Make sure it is at
+    " the end of the partition.
+    if (middle != partition)
+        let str = getline(middle)
+        let str2 = getline(partition)
+        call setline(middle, str2)
+        call setline(partition, str)
+    endif
+    call <SID>SortR(a:start, partition - 1, a:cmp)
+    call <SID>SortR(partition + 1, a:end, a:cmp)
 endfunc
 
 " To Sort a range of lines, pass the range to Sort() along with the name of a
 " function that will compare two lines.
 func! <SID>Sort(cmp) range
-  call <SID>SortR(a:firstline, a:lastline, a:cmp)
+    call <SID>SortR(a:firstline, a:lastline, a:cmp)
 endfunc
 
 " Added to deal with internationalized version of diff, which returns a
@@ -1048,68 +1193,68 @@ function! <SID>GetDiffStrings()
         return
     endif
 
-	let tmp1 = tempname()
-	let tmp2 = tempname()
-	let tmpdiff = tempname()
+    let tmp1 = tempname()
+    let tmp2 = tempname()
+    let tmpdiff = tempname()
 
     " We need to pad the backslashes in order to make it match
     let tmp1rx = <SID>EscapeDirForRegex(tmp1)
     let tmp2rx = <SID>EscapeDirForRegex(tmp2)
     let tmpdiffrx = <SID>EscapeDirForRegex(tmpdiff)
 
-	silent exe s:DirDiffMakeDirCmd . "\"" . tmp1 . "\""
-	silent exe s:DirDiffMakeDirCmd . "\"" . tmp2 . "\""
-	silent exe "!echo test > \"" . tmp1 . s:sep . "test" . "\""
-	silent exe "!diff -r --brief \"" . tmp1 . "\" \"" . tmp2 . "\" > \"" . tmpdiff . "\""
+    silent exe s:DirDiffMakeDirCmd . "\"" . tmp1 . "\""
+    silent exe s:DirDiffMakeDirCmd . "\"" . tmp2 . "\""
+    silent exe "!echo test > \"" . tmp1 . s:sep . "test" . "\""
+    silent exe "!diff -r --brief \"" . tmp1 . "\" \"" . tmp2 . "\" > \"" . tmpdiff . "\""
 
-	" Now get the result of that diff cmd
-	silent exe "split ". tmpdiff
+    " Now get the result of that diff cmd
+    silent exe "split ". tmpdiff
     "echo "First line: " . getline(1)
     "echo "tmp1: " . tmp1
     "echo "tmp1rx: " . tmp1rx
     let regex = '\(^.*\)' . tmp1rx . '\(.*\)' . "test"
-	let s:DirDiffDiffOnlyLine = substitute( getline(1), regex, '\1', '') 
-	let s:DirDiffDiffOnlyLineCenter = substitute( getline(1), regex, '\2', '') 
+    let s:DirDiffDiffOnlyLine = substitute( getline(1), regex, '\1', '')
+    let s:DirDiffDiffOnlyLineCenter = substitute( getline(1), regex, '\2', '')
     "echo "DirDiff Only: " . s:DirDiffDiffOnlyLine
-	
-	q
 
-	" Now let's get the Differ string
+    q
+
+    " Now let's get the Differ string
     "echo "Getting the diff in GetDiffStrings"
-	
-	silent exe "!echo testdifferent > \"" . tmp2 . s:sep . "test" . "\""
-	silent exe "!diff -r --brief \"" . tmp1 . "\" \"" . tmp2 . "\" > \"" . tmpdiff . "\""
-	
-	silent exe "split ". tmpdiff
-	let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '') 
+
+    silent exe "!echo testdifferent > \"" . tmp2 . s:sep . "test" . "\""
+    silent exe "!diff -r --brief \"" . tmp1 . "\" \"" . tmp2 . "\" > \"" . tmpdiff . "\""
+
+    silent exe "split ". tmpdiff
+    let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '')
     " Note that the diff on cygwin may output '/' instead of '\' for the
     " separator, so we need to accomodate for both cases
     let andrx = "^.*" . tmp1rx . "[\\\/]test\\(.*\\)" . tmp2rx . "[\\\/]test.*$"
     let endrx = "^.*" . tmp1rx . "[\\\/]test.*" . tmp2rx . "[\\\/]test\\(.*$\\)"
     "echo "andrx : " . andrx
     "echo "endrx : " . endrx
-	let s:DirDiffDifferAndLine = substitute( getline(1), andrx , "\\1", '') 
-    let s:DirDiffDifferEndLine = substitute( getline(1), endrx, "\\1", '') 
+    let s:DirDiffDifferAndLine = substitute( getline(1), andrx , "\\1", '')
+    let s:DirDiffDifferEndLine = substitute( getline(1), endrx, "\\1", '')
 
-	"echo "s:DirDiffDifferLine = " . s:DirDiffDifferLine
-	"echo "s:DirDiffDifferAndLine = " . s:DirDiffDifferAndLine
-	"echo "s:DirDiffDifferEndLine = " . s:DirDiffDifferEndLine
+    "echo "s:DirDiffDifferLine = " . s:DirDiffDifferLine
+    "echo "s:DirDiffDifferAndLine = " . s:DirDiffDifferAndLine
+    "echo "s:DirDiffDifferEndLine = " . s:DirDiffDifferEndLine
 
-	q
+    q
 
-	" Delete tmp files
+    " Delete tmp files
     "echo "Deleting tmp files."
 
-	call <SID>Delete(tmp1)
-	call <SID>Delete(tmp2)
-	call <SID>Delete(tmpdiff)
+    call <SID>Delete(tmp1)
+    call <SID>Delete(tmp2)
+    call <SID>Delete(tmpdiff)
 
-	"avoid get diff text again
-	let g:DirDiffTextOnlyInCenter = s:DirDiffDiffOnlyLineCenter
-	let g:DirDiffTextOnlyIn = s:DirDiffDiffOnlyLine
-	let g:DirDiffTextFiles = s:DirDiffDifferLine
-	let g:DirDiffTextAnd = s:DirDiffDifferAndLine
-	let g:DirDiffTextDiffer = s:DirDiffDifferEndLine
-	let g:DirDiffDynamicDiffText = 0
+    "avoid get diff text again
+    let g:DirDiffTextOnlyInCenter = s:DirDiffDiffOnlyLineCenter
+    let g:DirDiffTextOnlyIn = s:DirDiffDiffOnlyLine
+    let g:DirDiffTextFiles = s:DirDiffDifferLine
+    let g:DirDiffTextAnd = s:DirDiffDifferAndLine
+    let g:DirDiffTextDiffer = s:DirDiffDifferEndLine
+    let g:DirDiffDynamicDiffText = 0
 
 endfunction
