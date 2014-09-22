@@ -29,7 +29,7 @@ setxkbmap -layout 'us,ru' -option 'grp:ctrl_shift_toggle'
 xmodmap ~/.Xmodmap
 
 xrandr --output LVDS  --mode 1600x900 --primary
-xrandr --output VGA-0 --mode 1920x1080 --left-of LVDS
+xrandr --output HDMI-0 --mode 1920x1200 --rate 148.5 --left-of LVDS
 
 case $1 in
     kde)
