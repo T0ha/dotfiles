@@ -1,1 +1,17 @@
-/home/t0ha/projects/my/dotfiles/repo/.asoundrc
+pcm.!default {
+    type hw
+    card SD1955
+}
+ctl.!default {
+    type hw
+    card SD1955
+}
+pcm.dmixer{
+    type dmix
+    ipc_key 1024
+    ipc_key_add_uid false
+    ipc_perm 0666
+    slave {
+    pcm "hw:SD1955"
+}
+}
