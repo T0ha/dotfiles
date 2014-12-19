@@ -24,7 +24,7 @@ export path="$PLAN9/bin:$PATH"
 export shell=rc
 
 #Run additional things
-9 plumber
+# 9 plumber
 
 setxkbmap -layout 'us,ru' -option 'grp:ctrl_shift_toggle'
 xmodmap ~/.Xmodmap

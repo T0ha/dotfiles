@@ -12,6 +12,6 @@ XXkb.mainwindow.label.text.2: Ru
 XXkb.controls.add_when_start: yes
 XXkb.controls.add_when_create: yes
 XXkb.controls.two_state: no
-XXkb.controls.focusout: no
+XXkb.controls.focusout: yes
 
 XXkb.button.enable: no
