@@ -46,14 +46,14 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump rebar sudo pip archlinux dircycle python ssh-agent virtualenvwrapper)
+plugins=(git autojump rebar sudo pip archlinux dircycle python ssh-agent)
 
 # User configuration
 
-export PATH="/home/t0ha/bin:/usr/local/bin:/home/t0ha/.gem/ruby/2.1.0/bin:/home/t0ha/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/plan9/bin"
+export PATH="$HOME/.nitrogen/bin:${PATH}"
 # export MANPATH="/usr/local/man:$MANPATH"
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
-source /usr/bin/virtualenvwrapper.sh
+#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
+#source /usr/bin/virtualenvwrapper.sh
 
 source $ZSH/oh-my-zsh.sh
 
