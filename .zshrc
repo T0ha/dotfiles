@@ -6,7 +6,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="bureau"
+ ZSH_THEME="bureau"
+#ZSH_THEME="norm"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -46,14 +47,15 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump rebar sudo pip archlinux dircycle python ssh-agent)
+# Don't enable virtualenv!!!
+plugins=(git autojump rebar sudo pip dircycle python ssh-agent aws brew jira osx screen vagrant virtualenvwarper wd mix tmuxinator macports)
 
 # User configuration
 
-export PATH="$HOME/.nitrogen/bin:${PATH}"
+export PATH="$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:${PATH}"
 # export MANPATH="/usr/local/man:$MANPATH"
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
-#source /usr/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,7 +64,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -81,5 +83,6 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#alias nitrogen="~/.nitrogen/bin/nitrogen"
 stty -ixon
 bindkey '^s' self-insert

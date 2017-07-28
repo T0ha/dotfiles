@@ -159,19 +159,30 @@ bindsym $mod+p exec mpc toggle
 
 exec clipit &
 exec skype &
-exec skyped &
+#exec skyped &
 exec dropboxd &
 exec "urxvt -name 'irssi' -e screen irssi &"
-exec "urxvt -name 'mutt' -e mutt &"
-exec "urxvt -name 'news' -e newsbeuter &"
+#exec "urxvt -name 'mutt' -e mutt &"
+#exec "urxvt -name 'news' -e newsbeuter &"
 exec wicd-client -t &
-exec urxvt -e vim &
+#exec urxvt -e vim &
 exec urxvt &
 exec thunar &
+exec q4wine &
+exec chromium &
 
 # Workspace naming
-
+workspace 1 output LVDS
 workspace 2 output HDMI-0
+workspace 3 output LVDS
+workspace 4 output LVDS
+workspace 5 output LVDS
+workspace 6 output LVDS
+workspace 7 output LVDS
+workspace 8 output LVDS
+workspace 9 output LVDS
+workspace 0 output LVDS
+
 
 # Windows to tag assignment
 
@@ -180,12 +191,10 @@ assign [title="screen"] 4
 assign [title="urxvt"] 1
 assign [title="mutt"] 3
 assign [title="newsbeuter"] 3
-assign [title="Konsole$"] 1
-assign [title="File manager$"] 1
-assign [title="Skype.$"] 1
+assign [class="Thunar"] 5
+assign [class="Skype"] 4
 
-exec chromium &
 
 #Marks
 bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark: '
-bindsym $mod+` exec i3-input -F '[con_mark="%s"] focus' -P 'Goto mark: '
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -P 'Goto mark: '
