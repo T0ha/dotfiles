@@ -48,23 +48,23 @@ export ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Don't enable virtualenv!!!
-plugins=(git autojump rebar sudo pip dircycle python ssh-agent aws brew jira osx screen vagrant virtualenvwarper wd mix tmuxinator macports)
+plugins=(git autojump rebar sudo pip dircycle python ssh-agent brew jira osx screen vagrant virtualenvwarper wd mix tmuxinator macports)
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:${PATH}"
+export PATH="/usr/local/opt/python/libexec/bin:$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:${PATH}"
 # export MANPATH="/usr/local/man:$MANPATH"
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
 source /usr/local/bin/virtualenvwrapper.sh
 
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -75,6 +75,9 @@ export EDITOR='vim'
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
+# GAE
+source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -86,3 +89,6 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 #alias nitrogen="~/.nitrogen/bin/nitrogen"
 stty -ixon
 bindkey '^s' self-insert
+export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
