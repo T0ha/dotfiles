@@ -48,15 +48,15 @@ export ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Don't enable virtualenv!!!
-plugins=(git autojump rebar sudo pip dircycle python ssh-agent brew jira osx screen vagrant virtualenvwarper wd mix tmuxinator macports)
+export PATH="/usr/local/opt/python/libexec/bin:$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:${PATH}"
+plugins=(asdf git autojump rebar sudo pip dircycle python ssh-agent brew jira osx screen vagrant wd mix tmuxinator macports docker)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/opt/python/libexec/bin:$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:${PATH}"
 # export MANPATH="/usr/local/man:$MANPATH"
 #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
 
 # You may need to manually set your language environment
@@ -87,8 +87,13 @@ source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/comp
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias nitrogen="~/.nitrogen/bin/nitrogen"
+alias hyde='~/.asdf/installs/python/2.7.15/bin/hyde'
 stty -ixon
 bindkey '^s' self-insert
-export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/freetds@0.91/bin:/usr/local/opt/ruby/bin:$PATH"
+#source $HOME/.asdf/asdf.sh
+#source $HOME/.asdf/completions/asdf.bash
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /Users/ins/Documents/projects/direct/eon/repo/eon_test/dsl-sandbox/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/ins/Documents/projects/direct/eon/repo/eon_test/dsl-sandbox/node_modules/tabtab/.completions/electron-forge.zsh
