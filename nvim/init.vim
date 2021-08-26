@@ -45,15 +45,10 @@ Plug 'bogado/file-line'
 Plug 'vim-scripts/matchit.zip'
 Plug 'sbdchd/neoformat'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'folke/zen-mode.nvim', {'branch': 'main'}
 Plug 'folke/twilight.nvim', {'branch': 'main'}
-
-lua << EOF
-  require("twilight").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-EOF
+ 
 
 Plug 'bling/vim-airline'
 set laststatus=2
@@ -131,7 +126,7 @@ Plug 'klen/python-mode', {'for': 'python', 'branch': 'develop'}
     let g:pymode_folding = 0
 
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'Glench/Vim-Jinja3-Syntax'
+"Plug 'Glench/Vim-Jinja3-Syntax'
 
 " Erlang and Elixir stuff
 " Plug 'jimenezrick/vimerl'
@@ -235,5 +230,18 @@ colorscheme desert
 " colorscheme torte
 "DbExt configuration
 
+lua << EOF
+  require("zen-mode").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+
+  require("twilight").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    }
+EOF
 " Private data is in separate file out there
 source ~/Private/private.vim
