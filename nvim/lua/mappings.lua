@@ -10,3 +10,6 @@ vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', {})
 
 -- Fugitive
 vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:Git<CR>', {noremap = true})
+
+-- Nerdtree
+vim.api.nvim_set_keymap('n', '<C-n>', '<Esc>:NvimTreeToggle<CR>', {noremap = true})
