@@ -69,14 +69,66 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
+  ["bufferline.nvim"] = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0" },
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
   ["ctrlp.vim"] = {
-    config = { "\27LJ\2\n³\3\0\0\3\0\r\0\0296\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\15\0\0\0X\1\t€6\0\0\0009\0\4\0'\1\6\0=\1\5\0006\0\0\0009\0\4\0)\1\0\0=\1\a\0X\0\b€6\0\0\0009\0\4\0005\1\t\0=\1\b\0006\0\0\0009\0\4\0005\1\n\0=\1\5\0006\0\0\0009\0\4\0'\1\f\0=\1\v\0K\0\1\0\ara\28ctrlp_working_path_mode\1\3\0\0\t.gitAcd %s && git ls-files . --cached --exclude-standard --others\1\0\2\tfile'v.(exe|so|dll|class|png|jpg|jpeg)$\bdir\31v[/](.(git|hg|svn)|_site)$\24ctrlp_custom_ignore\22ctrlp_use_cachingAag %s --files-with-matches -g \"\" --ignore \".git$|.hg$|.svn$\"\23ctrlp_user_command\6g\aag\15executable\afn\bvim\0" },
+    config = { "\27LJ\2\n³\3\0\0\3\0\r\0\0296\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\15\0\0\0X\1\t€6\0\0\0009\0\4\0'\1\6\0=\1\5\0006\0\0\0009\0\4\0)\1\0\0=\1\a\0X\0\b€6\0\0\0009\0\4\0005\1\t\0=\1\b\0006\0\0\0009\0\4\0005\1\n\0=\1\5\0006\0\0\0009\0\4\0'\1\f\0=\1\v\0K\0\1\0\ara\28ctrlp_working_path_mode\1\3\0\0\t.gitAcd %s && git ls-files . --cached --exclude-standard --others\1\0\2\bdir\31v[/](.(git|hg|svn)|_site)$\tfile'v.(exe|so|dll|class|png|jpg|jpeg)$\24ctrlp_custom_ignore\22ctrlp_use_cachingAag %s --files-with-matches -g \"\" --ignore \".git$|.hg$|.svn$\"\23ctrlp_user_command\6g\aag\15executable\afn\bvim\0" },
     loaded = true,
     path = "/Users/ins/.local/share/nvim/site/pack/packer/start/ctrlp.vim",
     url = "https://github.com/kien/ctrlp.vim"
   },
+  ["lualine.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0" },
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
   ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\nÐ\4\0\0\6\0\25\0!6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\a\0005\4\b\0=\4\t\3=\3\n\0025\3\v\0004\4\0\0=\4\f\3=\3\r\0025\3\14\0004\4\0\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0005\4\21\0004\5\0\0=\5\22\4=\4\23\3=\3\24\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\21hide_root_folder\1\vheight\3\30\nwidth\3\30\16auto_resize\1\tside\tleft\ffilters\vcustom\1\0\1\rdotfiles\1\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\15update_cwd\1\venable\2\16diagnostics\nicons\1\0\4\tinfo\bïš\fwarning\bï±\thint\bïª\nerror\bï—\1\0\1\venable\1\22update_to_buf_dir\1\0\2\venable\2\14auto_open\2\23ignore_ft_on_setup\1\0\a\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\15auto_close\2\18open_on_setup\1\17hijack_netrw\2\18disable_netrw\2\nsetup\14nvim-tree\frequire\0" },
+    config = { "\27LJ\2\nÐ\4\0\0\6\0\25\0!6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\a\0005\4\b\0=\4\t\3=\3\n\0025\3\v\0004\4\0\0=\4\f\3=\3\r\0025\3\14\0004\4\0\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0005\4\21\0004\5\0\0=\5\22\4=\4\23\3=\3\24\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\tside\tleft\21hide_root_folder\1\vheight\3\30\nwidth\3\30\16auto_resize\1\ffilters\vcustom\1\0\1\rdotfiles\1\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\15update_cwd\1\venable\2\16diagnostics\nicons\1\0\4\nerror\bï—\tinfo\bïš\fwarning\bï±\thint\bïª\1\0\1\venable\1\22update_to_buf_dir\1\0\2\14auto_open\2\venable\2\23ignore_ft_on_setup\1\0\a\18disable_netrw\2\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\15auto_close\2\18open_on_setup\1\17hijack_netrw\2\nsetup\14nvim-tree\frequire\0" },
     loaded = true,
     path = "/Users/ins/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
@@ -96,6 +148,11 @@ _G.packer_plugins = {
     path = "/Users/ins/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/Users/ins/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/ins/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -104,14 +161,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\nÐ\4\0\0\6\0\25\0!6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\a\0005\4\b\0=\4\t\3=\3\n\0025\3\v\0004\4\0\0=\4\f\3=\3\r\0025\3\14\0004\4\0\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0005\4\21\0004\5\0\0=\5\22\4=\4\23\3=\3\24\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\21hide_root_folder\1\vheight\3\30\nwidth\3\30\16auto_resize\1\tside\tleft\ffilters\vcustom\1\0\1\rdotfiles\1\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\15update_cwd\1\venable\2\16diagnostics\nicons\1\0\4\tinfo\bïš\fwarning\bï±\thint\bïª\nerror\bï—\1\0\1\venable\1\22update_to_buf_dir\1\0\2\venable\2\14auto_open\2\23ignore_ft_on_setup\1\0\a\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\15auto_close\2\18open_on_setup\1\17hijack_netrw\2\18disable_netrw\2\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
 -- Config for: ctrlp.vim
 time([[Config for ctrlp.vim]], true)
-try_loadstring("\27LJ\2\n³\3\0\0\3\0\r\0\0296\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\15\0\0\0X\1\t€6\0\0\0009\0\4\0'\1\6\0=\1\5\0006\0\0\0009\0\4\0)\1\0\0=\1\a\0X\0\b€6\0\0\0009\0\4\0005\1\t\0=\1\b\0006\0\0\0009\0\4\0005\1\n\0=\1\5\0006\0\0\0009\0\4\0'\1\f\0=\1\v\0K\0\1\0\ara\28ctrlp_working_path_mode\1\3\0\0\t.gitAcd %s && git ls-files . --cached --exclude-standard --others\1\0\2\tfile'v.(exe|so|dll|class|png|jpg|jpeg)$\bdir\31v[/](.(git|hg|svn)|_site)$\24ctrlp_custom_ignore\22ctrlp_use_cachingAag %s --files-with-matches -g \"\" --ignore \".git$|.hg$|.svn$\"\23ctrlp_user_command\6g\aag\15executable\afn\bvim\0", "config", "ctrlp.vim")
+try_loadstring("\27LJ\2\n³\3\0\0\3\0\r\0\0296\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\15\0\0\0X\1\t€6\0\0\0009\0\4\0'\1\6\0=\1\5\0006\0\0\0009\0\4\0)\1\0\0=\1\a\0X\0\b€6\0\0\0009\0\4\0005\1\t\0=\1\b\0006\0\0\0009\0\4\0005\1\n\0=\1\5\0006\0\0\0009\0\4\0'\1\f\0=\1\v\0K\0\1\0\ara\28ctrlp_working_path_mode\1\3\0\0\t.gitAcd %s && git ls-files . --cached --exclude-standard --others\1\0\2\bdir\31v[/](.(git|hg|svn)|_site)$\tfile'v.(exe|so|dll|class|png|jpg|jpeg)$\24ctrlp_custom_ignore\22ctrlp_use_cachingAag %s --files-with-matches -g \"\" --ignore \".git$|.hg$|.svn$\"\23ctrlp_user_command\6g\aag\15executable\afn\bvim\0", "config", "ctrlp.vim")
 time([[Config for ctrlp.vim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\nÐ\4\0\0\6\0\25\0!6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\a\0005\4\b\0=\4\t\3=\3\n\0025\3\v\0004\4\0\0=\4\f\3=\3\r\0025\3\14\0004\4\0\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0005\4\21\0004\5\0\0=\5\22\4=\4\23\3=\3\24\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\tside\tleft\21hide_root_folder\1\vheight\3\30\nwidth\3\30\16auto_resize\1\ffilters\vcustom\1\0\1\rdotfiles\1\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\15update_cwd\1\venable\2\16diagnostics\nicons\1\0\4\nerror\bï—\tinfo\bïš\fwarning\bï±\thint\bïª\1\0\1\venable\1\22update_to_buf_dir\1\0\2\14auto_open\2\venable\2\23ignore_ft_on_setup\1\0\a\18disable_netrw\2\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\15auto_close\2\18open_on_setup\1\17hijack_netrw\2\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0", "config", "bufferline.nvim")
+time([[Config for bufferline.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
