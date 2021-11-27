@@ -13,3 +13,7 @@ vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:Git<CR>', {noremap = true})
 
 -- Nerdtree
 vim.api.nvim_set_keymap('n', '<C-n>', '<Esc>:NvimTreeToggle<CR>', {noremap = true})
+
+-- Tabs
+vim.api.nvim_set_keymap('n', '<C-j>', ':BufferLineCyclePrev<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-k>', ':BufferLineCycleNext<CR>', {noremap = true})
