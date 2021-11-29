@@ -17,3 +17,9 @@ vim.api.nvim_set_keymap('n', '<C-n>', '<Esc>:NvimTreeToggle<CR>', {noremap = tru
 -- Tabs
 vim.api.nvim_set_keymap('n', '<C-j>', ':BufferLineCyclePrev<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-k>', ':BufferLineCycleNext<CR>', {noremap = true})
+
+-- Telescope
+vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-f>', ':Telescope live_grep<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-b>', ':Telescope buffers<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-h>', ':Telescope help_tags<CR>', {noremap = true})

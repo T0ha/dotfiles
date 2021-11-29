@@ -45,29 +45,8 @@ return require('packer').startup(function()
 
   -- Fuzzy
   use {
-    'kien/ctrlp.vim',
-    config = function() 
-      if vim.fn.executable('ag') then
-        -- Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-        vim.g.ctrlp_user_command = 'ag %s --files-with-matches -g "" --ignore ".git$|.hg$|.svn$"'
-
-        -- ag is fast enough that CtrlP doesn't need to cache
-        vim.g.ctrlp_use_caching = 0
-      else
-        -- Fall back to using git ls-files if ag is not available
-        -- let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-        vim.g.ctrlp_custom_ignore = {
-          dir = 'v[/](.(git|hg|svn)|_site)$',
-          file = 'v.(exe|so|dll|class|png|jpg|jpeg)$',
-        }
-        vim.g.ctrlp_user_command = {'.git', 'cd %s && git ls-files . --cached --exclude-standard --others'}
-      end
-        -- let g:ctrlp_map = '<c-p>'
-        -- let g:ctrlp_cmd = 'CtrlP'
-
-        -- Use the nearest .git directory as the cwd
-        vim.g.ctrlp_working_path_mode = 'ra'
-    end
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   use {
