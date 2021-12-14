@@ -60,7 +60,8 @@ return require('packer').startup(function()
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function() 
-      require'nvim-tree'.setup {
+      -- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+      require'nvim-tree'.setup({
         disable_netrw       = true,
         hijack_netrw        = true,
         open_on_setup       = false,
@@ -103,10 +104,12 @@ return require('packer').startup(function()
           auto_resize = false,
           mappings = {
             custom_only = false,
-            list = {}
+            list = {
+              -- {key = "z", cb = tree_cb("edit") },
+            }
           }
         }
-      }
+      })
     end
   }
 
@@ -116,7 +119,12 @@ return require('packer').startup(function()
   }
 
   require('nvim-treesitter.configs').setup({
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = {
+      "erlang",
+      "elixir",
+      "heex",
+      "python"
+      },-- one of "all", "maintained" (parsers with maintainers), or a list of languages
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
     ignore_install = { "javascript" }, -- List of parsers to ignore installing
     highlight = {
