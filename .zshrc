@@ -49,7 +49,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 # Don't enable virtualenv!!!
 export PATH="/usr/local/opt/python/libexec/bin:$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:${PATH}"
-plugins=(asdf git autojump rebar sudo pip dircycle python ssh-agent brew jira osx screen vagrant wd mix tmuxinator macports docker)
+plugins=(asdf git autojump rebar sudo pip dircycle python ssh-agent brew jira macos screen vagrant wd mix tmuxinator macports docker)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -76,8 +76,8 @@ export EDITOR='nvim'
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 # GAE
-source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+#source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+#source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -90,10 +90,17 @@ source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/comp
 alias hyde='~/.asdf/installs/python/2.7.15/bin/hyde'
 stty -ixon
 bindkey '^s' self-insert
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/freetds@0.91/bin:/usr/local/opt/ruby/bin:$PATH"
 #source $HOME/.asdf/asdf.sh
 #source $HOME/.asdf/completions/asdf.bash
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+#. /opt/homebrew/share/zsh/site-functions
 
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f /Users/ins/Documents/projects/direct/eon/repo/eon_test/dsl-sandbox/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/ins/Documents/projects/direct/eon/repo/eon_test/dsl-sandbox/node_modules/tabtab/.completions/electron-forge.zsh
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/t0ha/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
