@@ -65,8 +65,18 @@ cmp.setup {
   },
   mapping = {
     ['<Tab>'] = cmp.mapping(cmp.mapping.confirm({select = true}), { 'i', 'c' }),
+    ['<CR>'] = cmp.mapping({
+      i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+      c = function(fallback) 
+        if cmp.visible() then
+          cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end
+    }),
 
-    },
+  },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
