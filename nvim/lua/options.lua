@@ -5,9 +5,10 @@ vim.opt.tabstop = indent
 vim.opt.softtabstop = indent
 vim.opt.shiftwidth = indent
 
-vim.g.colors_name = "desert"
+vim.g.colors_name = "dracula"
 vim.opt.expandtab = true
 vim.opt.number = false
+vim.opt.cursorline = true
 vim.opt.hlsearch = true
 vim.opt.wildmode = 'list:longest'
 vim.opt.scrolloff = 4
@@ -17,7 +18,7 @@ vim.opt.foldmethod = 'marker'
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.redrawtime = 100000
 
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 
 vim.cmd 'autocmd BufRead,BufNewFile *.ex,*.exs,mix.lock set filetype=elixir'
 

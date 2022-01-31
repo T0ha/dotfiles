@@ -1,9 +1,14 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
+
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+
+  -- Theme plugin
+    use 'Mofiqul/dracula.nvim'
+    use 'navarasu/onedark.nvim'
 
   -- Git warper
   use 'tpope/vim-fugitive'
@@ -118,12 +123,16 @@ return require('packer').startup(function()
     run = ':TSUpdate'
   }
 
+  require('onedark').setup {
+    style = 'darker'
+  }
   require('nvim-treesitter.configs').setup({
     ensure_installed = {
       "erlang",
       "elixir",
       "heex",
-      "python"
+      "python",
+      "markdown"
       },-- one of "all", "maintained" (parsers with maintainers), or a list of languages
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
     ignore_install = { "javascript" }, -- List of parsers to ignore installing
@@ -150,4 +159,3 @@ return require('packer').startup(function()
     }
   })
 end)
-

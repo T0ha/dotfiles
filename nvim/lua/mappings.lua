@@ -27,4 +27,4 @@ vim.api.nvim_set_keymap('n', '<C-h>', ':Telescope help_tags<CR>', {noremap = tru
 -- GoTo Preview and LSP
 vim.api.nvim_set_keymap('n', 'gd', "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', 'gi', "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", {noremap = true})
-vim.api.nvim_set_keymap('n', 'gP', "<cmd>lua require('goto-preview').close_all_win()()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', 'gP', "<cmd>lua require('goto-preview').close_all_win()<CR>", {noremap = true})
