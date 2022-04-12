@@ -11,12 +11,15 @@ return require('packer').startup(function()
     use 'navarasu/onedark.nvim'
 
   -- Git warper
-  use 'tpope/vim-fugitive'
+  -- use 'tpope/vim-fugitive'
+
+  use 'kdheepak/lazygit.nvim'
 
   -- Tabs
   use {
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
+    tag = "*",
     config = function()
       require("bufferline").setup{}
     end
@@ -66,12 +69,13 @@ return require('packer').startup(function()
     requires = 'kyazdani42/nvim-web-devicons',
     config = function() 
       -- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+      vim.g.nvim_tree_quit_on_open = 1
       require'nvim-tree'.setup({
         disable_netrw       = true,
         hijack_netrw        = true,
         open_on_setup       = false,
         ignore_ft_on_setup  = {},
-        auto_close          = true,
+        auto_close          = false,
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
@@ -98,7 +102,7 @@ return require('packer').startup(function()
           args = {}
         },
         filters = {
-          dotfiles = false,
+          dotfiles = true,
           custom = {}
         },
         view = {
@@ -131,6 +135,7 @@ return require('packer').startup(function()
       "erlang",
       "elixir",
       "heex",
+      "elm",
       "python",
       "markdown"
       },-- one of "all", "maintained" (parsers with maintainers), or a list of languages

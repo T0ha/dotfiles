@@ -9,7 +9,8 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', {})
 vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', {})
 
 -- Fugitive
-vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:Git<CR>', {noremap = true})
+-- vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:Git<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:LazyGit<CR>', {noremap = true})
 
 -- Nerdtree
 vim.api.nvim_set_keymap('n', '<C-n>', '<Esc>:NvimTreeToggle<CR>', {noremap = true})
@@ -28,3 +29,4 @@ vim.api.nvim_set_keymap('n', '<C-h>', ':Telescope help_tags<CR>', {noremap = tru
 vim.api.nvim_set_keymap('n', 'gd', "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', 'gi', "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', 'gP', "<cmd>lua require('goto-preview').close_all_win()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n','gD','<cmd>lua vim.lsp.buf.definition()<CR>', {})

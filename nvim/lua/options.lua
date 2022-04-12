@@ -5,7 +5,6 @@ vim.opt.tabstop = indent
 vim.opt.softtabstop = indent
 vim.opt.shiftwidth = indent
 
-vim.g.colors_name = "dracula"
 vim.opt.expandtab = true
 vim.opt.number = false
 vim.opt.cursorline = true
@@ -19,7 +18,8 @@ vim.opt.backspace = 'indent,eol,start'
 vim.opt.redrawtime = 100000
 
 vim.opt.termguicolors = true
-
+vim.g.colors_name = "dracula"
+vim.cmd 'colorscheme dracula'
 vim.cmd 'autocmd BufRead,BufNewFile *.ex,*.exs,mix.lock set filetype=elixir'
 
 -- LSP settings
