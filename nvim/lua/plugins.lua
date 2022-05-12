@@ -69,7 +69,6 @@ return require('packer').startup(function()
     requires = 'kyazdani42/nvim-web-devicons',
     config = function() 
       -- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-      vim.g.nvim_tree_quit_on_open = 1
       require'nvim-tree'.setup({
         disable_netrw       = true,
         hijack_netrw        = true,
@@ -82,6 +81,11 @@ return require('packer').startup(function()
         update_to_buf_dir   = {
           enable = true,
           auto_open = true,
+        },
+        actions = {
+          open_file = {
+            quit_on_open = true
+          }
         },
         diagnostics = {
           enable = false,
