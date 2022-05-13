@@ -65,6 +65,8 @@ cmp.setup {
     end,
   },
   mapping = {
+    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item()),
+    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item()),
     ['<Tab>'] = cmp.mapping(cmp.mapping.confirm({select = true}), { 'i' }),
     ['<CR>'] = cmp.mapping({
       i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
