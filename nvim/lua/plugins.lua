@@ -38,7 +38,12 @@ return require('packer').startup(function()
   -- LSP plugins
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
-
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  })
   -- Autocomplete
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -76,18 +81,20 @@ return require('packer').startup(function()
         hijack_netrw        = true,
         open_on_setup       = false,
         ignore_ft_on_setup  = {},
-        auto_close          = false,
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
-        update_to_buf_dir   = {
+        hijack_directories = {
           enable = true,
           auto_open = true,
         },
         actions = {
           open_file = {
             quit_on_open = true
-          }
+          },
+        remove_file = {
+          close_window = true,
+        },
         },
         diagnostics = {
           enable = false,
@@ -116,7 +123,7 @@ return require('packer').startup(function()
           height = 30,
           hide_root_folder = false,
           side = 'left',
-          auto_resize = false,
+          adaptive_size = false,
           mappings = {
             custom_only = false,
             list = {

@@ -84,7 +84,7 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
-    { name = 'buffer', opts = {
+    { name = 'buffer', opttion = {
       get_bufnrs = function()
         return vim.api.nvim_list_bufs()
       end
