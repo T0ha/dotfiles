@@ -44,6 +44,14 @@ return require('packer').startup(function()
       require("lsp_lines").setup()
     end,
   })
+
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup {}
+    end
+  }
+
   -- Autocomplete
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -62,12 +70,6 @@ return require('packer').startup(function()
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use {
-    'rmagatti/goto-preview',
-    config = function()
-      require('goto-preview').setup {}
-    end
-  }
 
   use {"Djancyp/cheat-sheet"}
 
@@ -135,11 +137,16 @@ return require('packer').startup(function()
     end
   }
 
+  -- TreeSitter plugins
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
 
+  use "Djancyp/better-comments.nvim"
+
+  -- Plugin setup
+  require('better-comment').Setup()
   require('onedark').setup {
     style = 'darker'
   }
