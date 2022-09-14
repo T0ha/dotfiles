@@ -80,7 +80,6 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["better-comments.nvim"] = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
     loaded = true,
     path = "/Users/t0ha/.local/share/nvim/site/pack/packer/start/better-comments.nvim",
     url = "https://github.com/Djancyp/better-comments.nvim"
@@ -159,8 +158,14 @@ _G.packer_plugins = {
     path = "/Users/t0ha/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-surround"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
+    loaded = true,
+    path = "/Users/t0ha/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
+  },
   ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\n�\5\0\0\6\0\31\0'6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\b\0005\4\a\0=\4\t\0035\4\n\0=\4\v\3=\3\f\0025\3\r\0005\4\14\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0004\4\0\0=\4\21\3=\3\22\0025\3\23\0004\4\0\0=\4\24\3=\3\25\0025\3\26\0005\4\27\0004\5\0\0=\5\28\4=\4\29\3=\3\30\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\18adaptive_size\1\tside\tleft\21hide_root_folder\1\vheight\3\30\nwidth\3\30\ffilters\vcustom\1\0\1\rdotfiles\2\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\venable\2\15update_cwd\1\16diagnostics\nicons\1\0\4\nerror\b\tinfo\b\fwarning\b\thint\b\1\0\1\venable\1\factions\16remove_file\1\0\1\17close_window\2\14open_file\1\0\0\1\0\1\17quit_on_open\2\23hijack_directories\1\0\2\venable\2\14auto_open\2\23ignore_ft_on_setup\1\0\6\18disable_netrw\2\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\18open_on_setup\1\17hijack_netrw\2\nsetup\14nvim-tree\frequire\0" },
+    config = { "\27LJ\2\n�\5\0\0\6\0\31\0'6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\b\0005\4\a\0=\4\t\0035\4\n\0=\4\v\3=\3\f\0025\3\r\0005\4\14\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0004\4\0\0=\4\21\3=\3\22\0025\3\23\0004\4\0\0=\4\24\3=\3\25\0025\3\26\0005\4\27\0004\5\0\0=\5\28\4=\4\29\3=\3\30\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\18adaptive_size\1\tside\tleft\21hide_root_folder\1\vheight\3\30\nwidth\3\30\ffilters\vcustom\1\0\1\rdotfiles\2\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\15update_cwd\1\venable\2\16diagnostics\nicons\1\0\4\tinfo\b\nerror\b\thint\b\fwarning\b\1\0\1\venable\1\factions\16remove_file\1\0\1\17close_window\2\14open_file\1\0\0\1\0\1\17quit_on_open\2\23hijack_directories\1\0\2\14auto_open\2\venable\2\23ignore_ft_on_setup\1\0\6\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\18open_on_setup\1\17hijack_netrw\2\18disable_netrw\2\nsetup\14nvim-tree\frequire\0" },
     loaded = true,
     path = "/Users/t0ha/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
@@ -203,6 +208,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n�\5\0\0\6\0\31\0'6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\b\0005\4\a\0=\4\t\0035\4\n\0=\4\v\3=\3\f\0025\3\r\0005\4\14\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0004\4\0\0=\4\21\3=\3\22\0025\3\23\0004\4\0\0=\4\24\3=\3\25\0025\3\26\0005\4\27\0004\5\0\0=\5\28\4=\4\29\3=\3\30\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\18adaptive_size\1\tside\tleft\21hide_root_folder\1\vheight\3\30\nwidth\3\30\ffilters\vcustom\1\0\1\rdotfiles\2\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\15update_cwd\1\venable\2\16diagnostics\nicons\1\0\4\tinfo\b\nerror\b\thint\b\fwarning\b\1\0\1\venable\1\factions\16remove_file\1\0\1\17close_window\2\14open_file\1\0\0\1\0\1\17quit_on_open\2\23hijack_directories\1\0\2\14auto_open\2\venable\2\23ignore_ft_on_setup\1\0\6\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\18open_on_setup\1\17hijack_netrw\2\18disable_netrw\2\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: goto-preview
+time([[Config for goto-preview]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17goto-preview\frequire\0", "config", "goto-preview")
+time([[Config for goto-preview]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
+-- Config for: lsp_lines.nvim
+time([[Config for lsp_lines.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14lsp_lines\frequire\0", "config", "lsp_lines.nvim")
+time([[Config for lsp_lines.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
@@ -211,22 +232,6 @@ time([[Config for lualine.nvim]], false)
 time([[Config for bufferline.nvim]], true)
 try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0", "config", "bufferline.nvim")
 time([[Config for bufferline.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n�\5\0\0\6\0\31\0'6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0025\3\5\0=\3\6\0025\3\b\0005\4\a\0=\4\t\0035\4\n\0=\4\v\3=\3\f\0025\3\r\0005\4\14\0=\4\15\3=\3\16\0025\3\17\0004\4\0\0=\4\18\3=\3\19\0025\3\20\0004\4\0\0=\4\21\3=\3\22\0025\3\23\0004\4\0\0=\4\24\3=\3\25\0025\3\26\0005\4\27\0004\5\0\0=\5\28\4=\4\29\3=\3\30\2B\0\2\1K\0\1\0\tview\rmappings\tlist\1\0\1\16custom_only\1\1\0\5\18adaptive_size\1\tside\tleft\21hide_root_folder\1\vheight\3\30\nwidth\3\30\ffilters\vcustom\1\0\1\rdotfiles\2\16system_open\targs\1\0\0\24update_focused_file\16ignore_list\1\0\2\venable\2\15update_cwd\1\16diagnostics\nicons\1\0\4\nerror\b\tinfo\b\fwarning\b\thint\b\1\0\1\venable\1\factions\16remove_file\1\0\1\17close_window\2\14open_file\1\0\0\1\0\1\17quit_on_open\2\23hijack_directories\1\0\2\venable\2\14auto_open\2\23ignore_ft_on_setup\1\0\6\18disable_netrw\2\15update_cwd\1\18hijack_cursor\1\16open_on_tab\1\18open_on_setup\1\17hijack_netrw\2\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: better-comments.nvim
-time([[Config for better-comments.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "better-comments.nvim")
-time([[Config for better-comments.nvim]], false)
--- Config for: lsp_lines.nvim
-time([[Config for lsp_lines.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14lsp_lines\frequire\0", "config", "lsp_lines.nvim")
-time([[Config for lsp_lines.nvim]], false)
--- Config for: goto-preview
-time([[Config for goto-preview]], true)
-try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17goto-preview\frequire\0", "config", "goto-preview")
-time([[Config for goto-preview]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
