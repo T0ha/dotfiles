@@ -1,0 +1,16 @@
+sw_volume: 66
+audio_device_state:1:My OS X Device
+state: pause
+current: 0
+time: 2591.990000
+random: 0
+repeat: 0
+single: 0
+consume: 1
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+song_begin: https://rr4---sn-gvnuxaxjvh-2xxe.googlevideo.com/videoplayback?expire=1663322490&ei=GvUjY_mkCMSIkgbyp7HYBQ&ip=157.230.145.235&id=o-AKCwgRvNYmZ1XiRfb_IFwvAleHgDytND0yXXmkySqoqo&itag=251&source=youtube&requiressl=yes&vprv=1&mime=audio%2Fwebm&ns=xuXCUGbmsiOl9TeoSCZr8yEI&gir=yes&clen=194013468&dur=10800.061&lmt=1648889006677746&keepalive=yes&fexp=24001373,24007246&c=WEB&rbqsm=fr&txp=5432434&n=yYCDeM1OPzR_rw&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRQIhALaXgb3EA4oKjKhwhfTOnmKBErbeVEL0FufgenilQYXHAiBaSaNjVF0ESQcsU83AY1EI1HaKauZnR4wwaoPfolwAEg%3D%3D&alr=yes&cpn=O8ujvLSSEGMxuhj0&cver=2.20220914.06.00&pot=D1dKpAfQo-StV3KOYDiKYV7bQ166SwM38vA-8HE76zEZd5p8WPzHGPvWLn-y40nSQXjEMygEtyKI6ToEEzpDKvM8aQdUnlBxSwXXWR5KuOJgGHgOI_MizKHiUEeY3-TK5AZE-7o=&redirect_counter=1&rm=sn-o09sl76&req_id=fbac248d1ec3a3ee&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=vB&mip=188.17.80.29&mm=31&mn=sn-gvnuxaxjvh-2xxe&ms=au&mt=1663301095&mv=m&mvi=4&pl=22&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgVmep2dCgGEb8PXg6j0RqnLSZEysAh0SxDcVHzVk4e5ICIGwQghcygAo62xvxwh0O6i6j3-o5M2BNYNNw6rphveT0
+song_end
+playlist_end
