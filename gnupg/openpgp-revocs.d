@@ -1,0 +1,1 @@
+/Users/t0ha/Private/dotfiles/gnupg/openpgp-revocs.d

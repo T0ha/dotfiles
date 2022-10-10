@@ -75,6 +75,9 @@ export EDITOR='nvim'
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
+# GPG
+export GPG_TTY=$(tty)
+
 # GAE
 #source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 #source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
