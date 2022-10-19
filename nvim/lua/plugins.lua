@@ -77,7 +77,6 @@ return require('packer').startup(function()
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function() 
-      -- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
       require'nvim-tree'.setup({
         disable_netrw       = true,
         hijack_netrw        = true,
@@ -122,7 +121,6 @@ return require('packer').startup(function()
         },
         view = {
           width = 30,
-          height = 30,
           hide_root_folder = false,
           side = 'left',
           adaptive_size = false,
