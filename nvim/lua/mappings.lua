@@ -23,6 +23,8 @@ vim.api.nvim_set_keymap('n', '<C-k>', ':BufferLineCycleNext<CR>', {noremap = tru
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-f>', ':Telescope live_grep<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-b>', ':Telescope buffers<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', 'gf',    ':Telescope grep_string<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', 'gr',    ':Telescope git_files<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-h>', ':Telescope help_tags<CR>', {noremap = true})
 
 -- GoTo Preview and LSP

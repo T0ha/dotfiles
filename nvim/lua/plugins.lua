@@ -194,4 +194,14 @@ return require('packer').startup(function()
       enable = true
     }
   })
+  require('telescope').setup({
+    defaults = {
+      layout_strategy = 'vertical',
+      layout_config = {
+        vertical = {
+          width = 0.90
+        }
+      }
+    }
+  })
 end)
