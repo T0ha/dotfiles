@@ -87,23 +87,19 @@ export GPG_TTY=$(tty)
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#alias nitrogen="~/.nitrogen/bin/nitrogen"
 alias hyde='~/.asdf/installs/python/2.7.15/bin/hyde'
 stty -ixon
 bindkey '^s' self-insert
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/freetds@0.91/bin:/usr/local/opt/ruby/bin:$PATH"
-#source $HOME/.asdf/asdf.sh
-#source $HOME/.asdf/completions/asdf.bash
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-#. /opt/homebrew/share/zsh/site-functions
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f /Users/ins/Documents/projects/direct/eon/repo/eon_test/dsl-sandbox/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/ins/Documents/projects/direct/eon/repo/eon_test/dsl-sandbox/node_modules/tabtab/.completions/electron-forge.zsh
+
+# Erlang & Elixir history
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/t0ha/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
