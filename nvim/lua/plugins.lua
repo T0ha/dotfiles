@@ -7,8 +7,8 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Theme plugin
-    use 'Mofiqul/dracula.nvim'
-    use 'navarasu/onedark.nvim'
+  use 'Mofiqul/dracula.nvim'
+  use 'navarasu/onedark.nvim'
 
   -- Git warper
   -- use 'tpope/vim-fugitive'
@@ -36,8 +36,14 @@ return require('packer').startup(function()
 
 
   -- LSP plugins
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
+  -- use 'neovim/nvim-lspconfig'
+  -- use 'williamboman/nvim-lsp-installer'
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
+
   use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
@@ -199,6 +205,10 @@ return require('packer').startup(function()
         vertical = {
           width = 0.90
         }
+      },
+      mappings = {
+         -- ["<C-w>"] = require('telescope.actions').cycle_history_next,
+        -- ["<C-e>"] = require('telescope.actions').cycle_history_prev,
       }
     }
   })
