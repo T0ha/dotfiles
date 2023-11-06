@@ -52,6 +52,13 @@ return require('packer').startup(function()
   })
 
   use {
+  'simrat39/symbols-outline.nvim', 
+  config = function()
+      require("symbols-outline").setup()
+  end
+  }
+
+  use {
     'rmagatti/goto-preview',
     config = function()
       require('goto-preview').setup {}
@@ -86,8 +93,6 @@ return require('packer').startup(function()
       require'nvim-tree'.setup({
         disable_netrw       = true,
         hijack_netrw        = true,
-        open_on_setup       = false,
-        ignore_ft_on_setup  = {},
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
@@ -127,15 +132,8 @@ return require('packer').startup(function()
         },
         view = {
           width = 30,
-          hide_root_folder = false,
           side = 'left',
-          adaptive_size = false,
-          mappings = {
-            custom_only = false,
-            list = {
-              -- {key = "z", cb = tree_cb("edit") },
-            }
-          }
+          adaptive_size = false
         }
       })
     end
