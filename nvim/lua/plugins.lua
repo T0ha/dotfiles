@@ -14,6 +14,12 @@ return require('packer').startup(function()
   -- use 'tpope/vim-fugitive'
 
   use 'kdheepak/lazygit.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
 
   -- Tabs
   use {
