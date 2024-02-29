@@ -8,8 +8,7 @@ vim.api.nvim_set_keymap('n', '8', ':nohlsearch<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', {})
 vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', {})
 
--- Fugitive
--- vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:Git<CR>', {noremap = true})
+-- LazyGit
 vim.api.nvim_set_keymap('n', '<C-g>', '<Esc>:LazyGit<CR>', {noremap = true})
 
 -- Nerdtree
@@ -38,3 +37,6 @@ vim.api.nvim_set_keymap('n','ge','<cmd>lua vim.diagnostic.open_float()<CR>', {no
 vim.api.nvim_set_keymap('n','gE','<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap=true})
 vim.api.nvim_set_keymap('n','g]','<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap=true})
 vim.api.nvim_set_keymap('n','g[','<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap=true})
+
+-- SymbolsOutline
+vim.api.nvim_set_keymap('n','gs',':SymbolsOutline<CR>', {noremap=true})

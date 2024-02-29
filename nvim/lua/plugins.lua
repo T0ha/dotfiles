@@ -1,100 +1,125 @@
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-
-return require('packer').startup(function()
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
+require('lazy').setup({
   -- Theme plugin
-  use 'Mofiqul/dracula.nvim'
-  use 'navarasu/onedark.nvim'
+  {
+    'Mofiqul/dracula.nvim',
+    config = function()
+      require('onedark').setup({
+        style = 'darker'
+      })
+    end
+  },
+  'navarasu/onedark.nvim',
 
-  -- Git warper
-  -- use 'tpope/vim-fugitive'
-
-  use 'kdheepak/lazygit.nvim'
-  use {
+  -- Git
+  'kdheepak/lazygit.nvim',
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
-  }
+  },
 
   -- Tabs
-  use {
+  {
     'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    tag = "*",
+    dependencies = 'kyazdani42/nvim-web-devicons',
+    version = "*",
     config = function()
       require("bufferline").setup{}
     end
-  }
+  },
 
   -- Bottom line
-  use {
+  {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    dependencies = {
+      {'kyazdani42/nvim-web-devicons', lazy = true}
+    },
     config = function()
       require('lualine').setup()
     end
-  }
-
+  },
 
   -- LSP plugins
-  -- use 'neovim/nvim-lspconfig'
-  -- use 'williamboman/nvim-lsp-installer'
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-  }
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig",
 
-  use({
+  {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines").setup()
     end,
-  })
-
-  use {
-  'simrat39/symbols-outline.nvim', 
-  config = function()
+  },
+  --
+  {
+    'simrat39/symbols-outline.nvim', 
+    config = function()
       require("symbols-outline").setup()
-  end
-  }
-
-  use {
+    end
+  },
+  {
     'rmagatti/goto-preview',
     config = function()
       require('goto-preview').setup {}
     end
-  }
+  },
 
   -- Autocomplete
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
 
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'
+  'saadparwaiz1/cmp_luasnip',
+  'L3MON4D3/LuaSnip',
 
   -- PopUps
-  use 'nvim-lua/popup.nvim'
+  'nvim-lua/popup.nvim',
 
   -- Fuzzy
-  use {
+  {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+    dependencies = {'nvim-lua/plenary.nvim'},
+    config = function()
+      require('telescope').setup({
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            vertical = {
+              width = 0.90
+            }
+          },
+          mappings = {
+            -- ["<C-w>"] = require('telescope.actions').cycle_history_next,
+            -- ["<C-e>"] = require('telescope.actions').cycle_history_prev,
+          }
+        }
+      })
+    end
+  },
 
-
-  use {"Djancyp/cheat-sheet"}
-
-  use {
+  --
+  --  use {"Djancyp/cheat-sheet"}
+  --
+  {
     'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
+    dependencies = {
+      'kyazdani42/nvim-web-devicons',
+    },
     config = function() 
       require'nvim-tree'.setup({
         disable_netrw       = true,
@@ -110,9 +135,9 @@ return require('packer').startup(function()
           open_file = {
             quit_on_open = true
           },
-        remove_file = {
-          close_window = true,
-        },
+          remove_file = {
+            close_window = true,
+          },
         },
         diagnostics = {
           enable = false,
@@ -143,77 +168,65 @@ return require('packer').startup(function()
         }
       })
     end
-  }
+  },
 
   -- TreeSitter plugins
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+    build = ':TSUpdate',
+    config = function()
 
-  use "Djancyp/better-comments.nvim"
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+          "erlang",
+          "elixir",
+          "heex",
+          "elm",
+          "python",
+          "markdown"
+        },-- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+        ignore_install = { "javascript" }, -- List of parsers to ignore installing
+        highlight = {
+          enable = true,              -- false will disable the whole extension
+          disable = { "c", "rust" },  -- list of language that will be disabled
+          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+          -- Using this option may slow down your editor, and you may see some duplicate highlights.
+          -- Instead of true it can also be a list of languages
+          additional_vim_regex_highlighting = false,
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+          },
+        },
+        indent = {
+          enable = true
+        }
+      })
+    end
+  },
+
+  {
+    "Djancyp/better-comments.nvim",
+    config = function()
+      require('better-comment').Setup()
+    end
+  },
 
   -- Surround
-  use({
+  {
     "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
       })
     end
-  })
-
-  -- Plugin setup
-  require('better-comment').Setup()
-  require('onedark').setup {
-    style = 'darker'
-  }
-  require('nvim-treesitter.configs').setup({
-    ensure_installed = {
-      "erlang",
-      "elixir",
-      "heex",
-      "elm",
-      "python",
-      "markdown"
-      },-- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-    ignore_install = { "javascript" }, -- List of parsers to ignore installing
-    highlight = {
-      enable = true,              -- false will disable the whole extension
-      disable = { "c", "rust" },  -- list of language that will be disabled
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-      -- Using this option may slow down your editor, and you may see some duplicate highlights.
-      -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = false,
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      },
-    },
-    indent = {
-      enable = true
-    }
-  })
-  require('telescope').setup({
-    defaults = {
-      layout_strategy = 'vertical',
-      layout_config = {
-        vertical = {
-          width = 0.90
-        }
-      },
-      mappings = {
-         -- ["<C-w>"] = require('telescope.actions').cycle_history_next,
-        -- ["<C-e>"] = require('telescope.actions').cycle_history_prev,
-      }
-    }
-  })
-end)
+  },
+})
