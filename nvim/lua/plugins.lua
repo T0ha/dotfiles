@@ -178,6 +178,7 @@ require('lazy').setup({
 
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
+          "lua",
           "erlang",
           "elixir",
           "heex",
