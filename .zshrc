@@ -1,3 +1,4 @@
+#export DEFAULT_USER=$USER
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -6,7 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
- ZSH_THEME="bureau"
+# export PROMPT=">"
+ZSH_THEME="bureau"
 #ZSH_THEME="norm"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -49,7 +51,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 # Don't enable virtualenv!!!
 export PATH="/usr/local/opt/python/libexec/bin:$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:${PATH}"
-plugins=(asdf git autojump rebar sudo pip dircycle python ssh-agent brew jira macos screen vagrant wd mix tmuxinator macports docker)
+plugins=(git autojump rebar sudo pip dircycle python ssh-agent brew jira macos screen wd mix tmuxinator docker direnv)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -87,11 +89,16 @@ export GPG_TTY=$(tty)
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias hyde='~/.asdf/installs/python/2.7.15/bin/hyde'
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+#alias nitrogen="~/.nitrogen/bin/nitrogen"
+#alias hyde='~/.asdf/installs/python/2.7.15/bin/hyde'
 stty -ixon
 bindkey '^s' self-insert
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/freetds@0.91/bin:/usr/local/opt/ruby/bin:$PATH"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. /opt/homebrew/share/zsh/site-functions
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 # tabtab source for electron-forge package
@@ -103,3 +110,30 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/t0ha/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+post_cmd_hook() {
+  espeak "Finished ${PWD##*/}" &|
+}
+
+add-zsh-hook precmd post_cmd_hook
+
+fpath=(/Users/t0ha/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
