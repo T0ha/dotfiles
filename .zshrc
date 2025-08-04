@@ -133,6 +133,14 @@ post_cmd_hook() {
 
 add-zsh-hook precmd post_cmd_hook
 
+tmux_window_name_update_hook() {
+  if [[ -n "$TMUX" ]]; then
+    tmux rename-window "$(basename "$PWD")"
+  fi
+}
+
+add-zsh-hook chpwd tmux_window_name_update_hook
+
 fpath=(/Users/t0ha/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
