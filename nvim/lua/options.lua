@@ -4,6 +4,7 @@ local indent = 2
 vim.opt.tabstop = indent
 vim.opt.softtabstop = indent
 vim.opt.shiftwidth = indent
+vim.opt.foldmethod = 'indent'
 
 vim.opt.expandtab = true
 vim.opt.number = false
@@ -21,26 +22,23 @@ vim.opt.termguicolors = true
 vim.g.colors_name = "dracula"
 vim.cmd 'colorscheme dracula'
 vim.cmd 'autocmd BufRead,BufNewFile *.ex,*.exs,mix.lock set filetype=elixir'
+-- vim.cmd [[
+--   autocmd DiagnosticChanged * lua vim.diagnostic.setqflist()
+-- ]]
 
 -- LSP settings
 require("mason").setup()
 require("mason-lspconfig").setup()
 
-require("mason-lspconfig").setup_handlers {
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
-  function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {}
-  end,
-  -- Next, you can provide a dedicated handler for specific servers.
-  -- For example, a handler override for the `rust_analyzer`:
-}
-
--- nvim-cmp supports additional completion capabilities
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- require('cmp_nvim_lsp').default_capabilities()
 vim.o.completeopt = 'menuone,noselect'
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = false,
+  update_in_insert = true,
+  severity_sort = false,
+})
 
 -- luasnip setup
 local luasnip = require 'luasnip'

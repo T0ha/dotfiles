@@ -73,6 +73,7 @@ require('lazy').setup({
   },
   {
     'rmagatti/goto-preview',
+    dependencies = 'rmagatti/logger.nvim',
     config = function()
       require('goto-preview').setup {}
     end
@@ -107,11 +108,36 @@ require('lazy').setup({
             -- ["<C-w>"] = require('telescope.actions').cycle_history_next,
             -- ["<C-e>"] = require('telescope.actions').cycle_history_prev,
           }
+        },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+              -- even more opts
+            }
+          }
         }
       })
+      require("telescope").load_extension("ui-select")
     end
   },
 
+  'nvim-telescope/telescope-ui-select.nvim',
+  {
+    "emmanueltouzery/elixir-extras.nvim",
+    lazy = true,
+    ft = "elixir",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      { "<leader>ed", function() require("elixir-extras").elixir_view_docs({}) end, desc = "Elixir View Docs" },
+      { "<leader>em", function() require("elixir-extras").elixir_view_docs({ include_mix_libs = true }) end, desc = "Elixir View Docs (mix libs)" },
+      { "<leader>ec", function() require("elixir-extras").module_complete() end, desc = "Elixir Module Complete" },
+    },
+    config = function()
+      require("elixir-extras").setup_multiple_clause_gutter()
+    end,
+  },
   --
   --  use {"Djancyp/cheat-sheet"}
   --
@@ -229,5 +255,21 @@ require('lazy').setup({
         -- Configuration here, or leave empty to use defaults
       })
     end
+  },
+
+  "github/copilot.vim",
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+      mappings = {
+      },
+    },
+    -- See Commands section for default commands if you want to lazy load on them
   },
 })

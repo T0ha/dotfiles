@@ -38,5 +38,10 @@ vim.api.nvim_set_keymap('n','gE','<cmd>lua vim.diagnostic.setloclist()<CR>', {no
 vim.api.nvim_set_keymap('n','g]','<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap=true})
 vim.api.nvim_set_keymap('n','g[','<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap=true})
 
+vim.api.nvim_set_keymap('n','gw','<cmd>lua vim.diagnostic.setqflist()<CR>', {noremap=true})
+
 -- SymbolsOutline
 vim.api.nvim_set_keymap('n','gs',':SymbolsOutline<CR>', {noremap=true})
+
+-- Copilot
+vim.api.nvim_set_keymap('n','<C-c>',':CopilotChatToggle<CR>', {noremap=true})
