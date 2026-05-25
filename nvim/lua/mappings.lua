@@ -43,5 +43,7 @@ vim.api.nvim_set_keymap('n','gw','<cmd>lua vim.diagnostic.setqflist()<CR>', {nor
 -- SymbolsOutline
 vim.api.nvim_set_keymap('n','gs',':SymbolsOutline<CR>', {noremap=true})
 
--- Copilot
+-- AI: Copilot, CodeCompanion, etc
 vim.api.nvim_set_keymap('n','<C-c>',':CopilotChatToggle<CR>', {noremap=true})
+vim.api.nvim_set_keymap('n','gcc',"<cmd>lua require('codecompanion').toggle()<CR>", {noremap=true})
+vim.api.nvim_set_keymap('n','gca',':CodeCompanionActions<CR>', {noremap=true})

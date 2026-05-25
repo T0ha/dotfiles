@@ -51,7 +51,7 @@ ZSH_THEME="bureau"
 # Add wisely, as too many plugins slow down shell startup.
 # Don't enable virtualenv!!!
 export PATH="/usr/local/opt/python/libexec/bin:$HOME/.nitrogen/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:${PATH}"
-plugins=(git autojump rebar sudo pip dircycle python ssh-agent brew jira macos screen wd mix tmuxinator docker direnv)
+plugins=(git autojump rebar dircycle python ssh-agent brew jira macos wd mix-fast tmuxinator docker direnv kubectl)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -97,7 +97,7 @@ stty -ixon
 bindkey '^s' self-insert
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/freetds@0.91/bin:/usr/local/opt/ruby/bin:$PATH"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH="$HOME/.asdf/shims:$PATH"
 . /opt/homebrew/share/zsh/site-functions
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
